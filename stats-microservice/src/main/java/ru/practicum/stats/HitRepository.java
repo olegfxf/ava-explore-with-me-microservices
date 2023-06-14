@@ -17,24 +17,14 @@ public interface HitRepository extends JpaRepository<Hit, Long> {
 
     List<Hit> findAllByTimestampBefore(LocalDateTime end);
 
-    List<Hit> findDistinctByTimestampAfter(LocalDateTime start);
-
-
     @Query(value = "SELECT  DISTINCT on (h.ip) h.id, h.app, h.uri,  h.ip, h.timestamp FROM hits AS h WHERE h.timestamp > :startDate ORDER  BY  h.ip ", nativeQuery = true)
     List<Hit> getHitDistinctAfter(@Param("startDate") LocalDateTime startDate);
-
-    List<Hit> findDistinctByTimestampIsBetween(LocalDateTime start, LocalDateTime end);
-
 
     @Query(value = "SELECT  DISTINCT on (h.ip) h.id, h.app, h.uri,  h.ip, h.timestamp FROM hits AS h WHERE h.timestamp BETWEEN :startDate AND  :endDate" +
             " ORDER  BY  h.ip ", nativeQuery = true)
     List<Hit> getHitDistinctBetween(@Param("startDate") LocalDateTime startDate,
                                     @Param("endDate") LocalDateTime endDate);
 
-    List<Hit> findDistinctByTimestampBefore(LocalDateTime end);
-
-    @Query(value = "SELECT  DISTINCT on (h.ip) h.id, h.app, h.uri,  h.ip, h.timestamp FROM hits AS h" +
-            " WHERE h.timestamp < :endDate" +
-            " ORDER  BY  h.ip ", nativeQuery = true)
-    List<Hit> getHitDistinctBefor(@Param("endDate") LocalDateTime endDate);
+    @Query(value = "SELECT  DISTINCT on (h.ip) h.id, h.app, h.uri,  h.ip, h.timestamp FROM hits AS h WHERE h.timestamp < :endDate ORDER  BY  h.ip ", nativeQuery = true)
+    List<Hit> getHitDistinctBefore(@Param("endDate") LocalDateTime endDate);
 }

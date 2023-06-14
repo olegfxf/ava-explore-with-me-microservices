@@ -42,7 +42,7 @@ public class HitServiceImpl implements HitService {
             if (startStr != null && endStr == null) {
                 hits = hitRepository.getHitDistinctAfter(start);
             } else if (startStr == null && endStr != null)
-                hits = hitRepository.getHitDistinctBefor(end);
+                hits = hitRepository.getHitDistinctBefore(end);
             else if (startStr != null && endStr != null) {
                 hits = hitRepository.getHitDistinctBetween(start, end);
             }

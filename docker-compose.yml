@@ -8,7 +8,7 @@ services:
     ports:
       - "9090:9090"
     environment:
-        SPRING_DTATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats-db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats-db
 
   stats-db:
     image: postgres:14-alpine

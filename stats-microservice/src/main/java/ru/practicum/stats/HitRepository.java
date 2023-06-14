@@ -12,6 +12,17 @@ import java.util.List;
 @SuppressWarnings("checkstyle:Regexp")
 @Repository
 public interface HitRepository extends JpaRepository<Hit, Long> {
+
+
+
+
+
+
+
+
+
+
+
     List<Hit> findAllByTimestampAfter(LocalDateTime start);
 
     List<Hit> findAllByTimestampIsBetween(LocalDateTime start, LocalDateTime end);

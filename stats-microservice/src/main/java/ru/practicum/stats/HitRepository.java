@@ -9,6 +9,7 @@ import ru.practicum.stats.model.Hit;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@SuppressWarnings("checkstyle:Regexp")
 @Repository
 public interface HitRepository extends JpaRepository<Hit, Long> {
     List<Hit> findAllByTimestampAfter(LocalDateTime start);

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.web.JsonPath;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.practicum.stats.dto.HitDto;
@@ -36,6 +37,7 @@ class HitControllerTest {
 
     private HitDto hitDto;
     private Hit hit = new Hit();
+    private ViewStats viewStats = new ViewStats();
 
 
     @BeforeEach
@@ -44,6 +46,10 @@ class HitControllerTest {
                 .uri("https://museum.ru")
                 .hit(6)
                 .build();
+
+        viewStats.setApp("/main-service");
+        viewStats.setUri("https://museum.ru");
+        viewStats.setHits(5L);
 
         hit = hit.toBuilder()
                 .id(1L)
@@ -81,23 +87,24 @@ class HitControllerTest {
     @SneakyThrows
     @Test
     void getStats() {
-        List<HitDto> hitDtos = List.of(hitDto);
+        List<ViewStats> viewStats = List.of(this.viewStats);
 
-        when(hitService.getStats(any(), any(), any()))
-                .thenReturn(hitDtos);
+        when(hitService.getStats(any(), any(), any(), any()))
+                .thenReturn(viewStats);
 
         mvc.perform(get("/hit")
                         .param("start", "2020-05-05T00:00:00")
                         .param("end", "2020-06-05T00:00:00")
                         .param("isUnique", "false")
-                        .content(mapper.writeValueAsString(hitDtos))
+                        .content(mapper.writeValueAsString(viewStats))
                         .header("x-sharer-user-id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.[0].uri", is(hitDtos.get(0).getUri())))
-                .andExpect(jsonPath("$.[0].hit", is(hitDtos.get(0).getHit()), Integer.class));
+                .andExpect(jsonPath("$.[0].app", is(viewStats.get(0).getApp())))
+                .andExpect(jsonPath("$.[0].uri", is(viewStats.get(0).getUri())))
+                .andExpect(jsonPath("$.[0].hit", is(viewStats.get(0).getHits()), Integer.class));
         //          .andExpect(content().json(mapper.writeValueAsString(stat)));
 
     }

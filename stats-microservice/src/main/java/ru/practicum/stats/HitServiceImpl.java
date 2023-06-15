@@ -2,15 +2,13 @@ package ru.practicum.stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.practicum.stats.dto.HitDto;
-import ru.practicum.stats.dto.HitMapper;
 import ru.practicum.stats.model.Hit;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class HitServiceImpl implements HitService {
@@ -26,9 +24,8 @@ public class HitServiceImpl implements HitService {
     }
 
 
-
-    public List<HitDto> getStats(String startStr, String endStr, Boolean isUnique) {
-        List<Hit> hits = new ArrayList<>();
+    public List<ViewStats> getStats(String startStr, String endStr, List<String> uris, Boolean isUnique) {
+        List<ViewStats> viewStats = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         LocalDateTime start = LocalDateTime.now();
@@ -39,25 +36,18 @@ public class HitServiceImpl implements HitService {
             end = LocalDateTime.parse(endStr, formatter);
 
         if (isUnique) {
-            if (startStr != null && endStr == null) {
-                hits = hitRepository.getHitDistinctAfter(start);
-            } else if (startStr == null && endStr != null)
-                hits = hitRepository.getHitDistinctBefore(end);
-            else if (startStr != null && endStr != null) {
-                hits = hitRepository.getHitDistinctBetween(start, end);
-            }
-
-
+            if (uris == null)
+                viewStats = hitRepository.getStatsWithoutUriDistinct(start, end);
+            else
+                viewStats = hitRepository.getStatsWithUriDistinct(start, end, uris);
         } else {
-            if (startStr != null && endStr == null)
-                hits = hitRepository.findAllByTimestampAfter(start);
-            else if (startStr == null && endStr != null)
-                hits = hitRepository.findAllByTimestampBefore(end);
-            else if (startStr != null && endStr != null)
-                hits = hitRepository.findAllByTimestampIsBetween(start, end);
+            if (uris == null)
+                viewStats = hitRepository.getStatsWithoutUri(start, end);
+            else
+                viewStats = hitRepository.getStatsWithUri(start, end, uris);
         }
 
-        System.out.println(hits);
-        return hits.stream().map(hit -> HitMapper.toHitDto(hit)).collect(Collectors.toList());
+        Collections.reverse(viewStats);
+        return viewStats;
     }
 }

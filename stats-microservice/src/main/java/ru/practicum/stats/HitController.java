@@ -2,7 +2,6 @@ package ru.practicum.stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.stats.dto.HitDto;
 import ru.practicum.stats.model.Hit;
 
 import java.util.List;
@@ -18,17 +17,18 @@ public class HitController {
     }
 
     @PostMapping("/hit")
-    @ResponseBody
     public Hit save(@RequestBody Hit hit) {
+
         return hitService.save(hit);
     }
 
-    @GetMapping("/hit")
-    public List<HitDto> getStats(@RequestParam String start,
-                                 @RequestParam String end,
-                            //     @RequestParam List<String> uris,
-                                 @RequestParam Boolean isUnique) {
-        return hitService.getStats(start, end, isUnique);
+    @GetMapping("/stats")
+    public List<ViewStats> getStats(@RequestParam String start,
+                                    @RequestParam String end,
+                                    @RequestParam(required = false) List<String> uris,
+                                    @RequestParam(defaultValue = "false") boolean unique) {
+
+        return hitService.getStats(start, end, uris, unique);
     }
 
 }

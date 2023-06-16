@@ -42,17 +42,17 @@ class HitControllerTest {
     @BeforeEach
     void setUp() {
         hitDto = HitDto.builder()
-                .uri("https://museum.ru")
+                .uri("/events")
                 .hit(6)
                 .build();
 
         viewStats.setApp("/main-service");
-        viewStats.setUri("https://museum.ru");
+        viewStats.setUri("/events");
         viewStats.setHits(5L);
 
         hit = hit.toBuilder()
                 .id(1L)
-                .uri("http://museum.ru")
+                .uri("/events")
                 .ip("77.5.10.66")
                 .timestamp(LocalDateTime.now())
                 .app("main-service")
@@ -91,10 +91,10 @@ class HitControllerTest {
         when(hitService.getStats(any(), any(), any(), any()))
                 .thenReturn(viewStats);
 
-        mvc.perform(get("/hit")
+        mvc.perform(get("/stats")
                         .param("start", "2020-05-05T00:00:00")
                         .param("end", "2020-06-05T00:00:00")
-                        .param("isUnique", "false")
+                        .param("unique", "false")
                         .content(mapper.writeValueAsString(viewStats))
                         .header("x-sharer-user-id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
@@ -103,7 +103,7 @@ class HitControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].app", is(viewStats.get(0).getApp())))
                 .andExpect(jsonPath("$.[0].uri", is(viewStats.get(0).getUri())))
-                .andExpect(jsonPath("$.[0].hit", is(viewStats.get(0).getHits()), Integer.class));
+                .andExpect(jsonPath("$.[0].hits", is(viewStats.get(0).getHits()), Long.class));
         //          .andExpect(content().json(mapper.writeValueAsString(stat)));
 
     }

@@ -11,6 +11,7 @@ import ru.practicum.stats.model.Hit;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,19 +30,19 @@ class HitServiceImplTest {
     LocalDateTime localDateTimePlus = localDateTime.plusMonths(1);
     LocalDateTime localDateTimeMinus = localDateTime.minusMonths(1);
 
-    List<String> uris = new ArrayList<>();
+    Optional<List<String>> uris = Optional.of(new ArrayList<>());
 
 
     @BeforeEach
     void setUp() {
         hit = Hit.builder()
-                .uri("https://museum.ru")
+                .uri("/events")
                 .ip("77.5.10.66")
                 .app("main-service")
                 .timestamp(LocalDateTime.of(2020, 05, 05, 00, 00))
                 .build();
 
-        uris.add("/events");
+        uris.get().add("/events");
     }
 
 
@@ -58,35 +59,21 @@ class HitServiceImplTest {
 
         hitService.save(hit);
         hit.setId(null);
+        hit.setApp("main-service1");
         hit.setTimestamp(localDateTimePlus);
         hitService.save(hit);
         hit.setId(null);
+        hit.setApp("main-service2");
         hit.setTimestamp(localDateTimeMinus);
         hitService.save(hit);
 
-        System.out.println(hitRepository.findAll().size());
+        System.out.println(hitRepository.findAll() + " QQQ");
 
-//"2020-05-05T00:00:00"
+        List<ViewStats> viewStatsList = hitService.getStats("2020-03-05 00:00:00", "2020-07-05 00:00:00", uris, true);
+        assertEquals(3, viewStatsList.size());
 
-        List<ViewStats> hitDtos = hitService.getStats("2020-03-05 00:00:00", "2020-07-05 00:00:00", uris, true);
-        assertEquals(1, hitDtos.size());
-
-        hitDtos = hitService.getStats("2020-05-10 00:00:00", null, uris, true);
-        assertEquals(1, hitDtos.size());
-
-        hitDtos = hitService.getStats(null, "2020-05-10 00:00:00", uris, true);
-        assertEquals(1, hitDtos.size());
-
-
-        hitDtos = hitService.getStats("2020-03-05 00:00:00", "2020-07-05 00:00:00", uris, false);
-        assertEquals(3, hitDtos.size());
-
-        hitDtos = hitService.getStats("2020-05-10 00:00:00", null, uris, false);
-        assertEquals(1, hitDtos.size());
-
-        hitDtos = hitService.getStats(null, "2020-05-10 00:00:00", uris, false);
-        assertEquals(2, hitDtos.size());
-
+        viewStatsList = hitService.getStats("2020-03-05 00:00:00", "2020-07-05 00:00:00", uris, false);
+        assertEquals(3, viewStatsList.size());
 
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.stats.model.Hit;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -25,7 +26,7 @@ public class HitController {
     @GetMapping("/stats")
     public List<ViewStats> getStats(@RequestParam String start,
                                     @RequestParam String end,
-                                    @RequestParam(required = false) List<String> uris,
+                                    @RequestParam(required = false) Optional<List<String>> uris,
                                     @RequestParam(defaultValue = "false") boolean unique) {
 
         return hitService.getStats(start, end, uris, unique);

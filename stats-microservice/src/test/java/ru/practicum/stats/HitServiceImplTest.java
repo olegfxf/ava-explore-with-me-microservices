@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import ru.practicum.stats.dto.ViewStats;
 import ru.practicum.stats.model.Hit;
 
 import java.time.LocalDateTime;

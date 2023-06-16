@@ -2,6 +2,9 @@ package ru.practicum.stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.practicum.stats.dto.HitDto;
+import ru.practicum.stats.dto.HitMapper;
+import ru.practicum.stats.dto.ViewStats;
 import ru.practicum.stats.model.Hit;
 
 import java.time.LocalDateTime;
@@ -20,8 +23,8 @@ public class HitServiceImpl implements HitService {
         this.hitRepository = hitRepository;
     }
 
-    public Hit save(Hit hit) {
-        return hitRepository.save(hit);
+    public HitDto save(Hit hit) {
+        return HitMapper.toHitDto(hitRepository.save(hit));
     }
 
 

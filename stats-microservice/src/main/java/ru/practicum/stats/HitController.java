@@ -2,6 +2,9 @@ package ru.practicum.stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.stats.dto.HitDto;
+import ru.practicum.stats.dto.HitMapper;
+import ru.practicum.stats.dto.ViewStats;
 import ru.practicum.stats.model.Hit;
 
 import java.util.List;
@@ -18,7 +21,7 @@ public class HitController {
     }
 
     @PostMapping("/hit")
-    public Hit save(@RequestBody Hit hit) {
+    public HitDto save(@RequestBody Hit hit) {
 
         return hitService.save(hit);
     }

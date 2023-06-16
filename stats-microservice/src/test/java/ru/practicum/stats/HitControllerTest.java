@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.practicum.stats.dto.HitDto;
+import ru.practicum.stats.dto.ViewStats;
 import ru.practicum.stats.model.Hit;
 
 import java.nio.charset.StandardCharsets;
@@ -42,6 +43,7 @@ class HitControllerTest {
     @BeforeEach
     void setUp() {
         hitDto = HitDto.builder()
+                .app("/main-service")
                 .uri("/events")
                 .hit(6)
                 .build();
@@ -64,22 +66,19 @@ class HitControllerTest {
     @Test
     void save() {
         when(hitService.save(any()))
-                .thenReturn(hit);
+                .thenReturn(hitDto);
 
         mvc.perform(post("/hit")
-                        .content(mapper.writeValueAsString(hit))
+                        .content(mapper.writeValueAsString(hitDto))
                         .header("x-sharer-user-id", 1L)
                         .characterEncoding(StandardCharsets.UTF_8)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.id", is(hit.getId()), Long.class))
-//                .andExpect(jsonPath("$.uri", is(hit.getUri())))
-//                .andExpect(jsonPath("$.ip", is(hit.getIp())))
-//                .andExpect(jsonPath("$.app", is(hit.getApp())))
-//                .andExpect(jsonPath("$.timestamp", is(hit.getTimestamp()
-//                        .toString().substring(0,28))));
-                .andExpect(content().json(mapper.writeValueAsString(hit)));
+                .andExpect(jsonPath("$.app", is(hitDto.getApp())))
+                .andExpect(jsonPath("$.uri", is(hitDto.getUri())))
+                .andExpect(jsonPath("$.hit", is(hitDto.getHit())));
+//                .andExpect(content().json(mapper.writeValueAsString(hit)));
 
     }
 

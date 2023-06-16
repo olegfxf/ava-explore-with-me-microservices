@@ -1,5 +1,6 @@
 package ru.practicum.stats.dto;
 
+import ru.practicum.dto.HitDto;
 import ru.practicum.stats.model.Hit;
 
 public class HitMapper {

@@ -20,7 +20,8 @@
 
 	<modules>
 		<module>stats-microservice</module>
-	</modules>
+        <module>dto</module>
+    </modules>
 
 
 	<properties>

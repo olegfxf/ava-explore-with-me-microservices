@@ -1,6 +1,6 @@
 package ru.practicum.stats;
 
-import ru.practicum.stats.dto.HitDto;
+import ru.practicum.dto.HitDto;
 import ru.practicum.stats.dto.ViewStats;
 import ru.practicum.stats.model.Hit;
 

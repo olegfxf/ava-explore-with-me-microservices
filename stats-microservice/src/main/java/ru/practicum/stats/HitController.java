@@ -2,7 +2,7 @@ package ru.practicum.stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.stats.dto.HitDto;
+import ru.practicum.dto.HitDto;
 import ru.practicum.stats.dto.ViewStats;
 import ru.practicum.stats.model.Hit;
 

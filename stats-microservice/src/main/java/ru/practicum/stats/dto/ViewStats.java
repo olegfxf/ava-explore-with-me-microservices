@@ -11,16 +11,9 @@ import java.util.Objects;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class ViewStats implements Comparable<ViewStats> {
-     String app;
-     String uri;
-     Long hits;
-
-//    public ViewStats(String app, String uri, Long hits) {
-//        this.app = app;
-//        this.uri = uri;
-//        this.hits = hits;
-//    }
-
+    String app;
+    String uri;
+    Long hits;
 
     @Override
     public int compareTo(ViewStats viewStats) {

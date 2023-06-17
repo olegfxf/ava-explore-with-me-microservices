@@ -17,10 +17,4 @@ public class HitDto {
     String uri;
 
     Integer hit;
-
-//    public HitDto(String app, String uri, Integer hit) {
-//        this.app = app;
-//        this.uri = uri;
-//        this.hit = hit;
-//    }
 }

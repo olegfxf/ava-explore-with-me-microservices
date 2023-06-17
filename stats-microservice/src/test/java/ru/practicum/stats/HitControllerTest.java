@@ -22,7 +22,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = HitController.class)
 class HitControllerTest {
@@ -78,7 +79,6 @@ class HitControllerTest {
                 .andExpect(jsonPath("$.app", is(hitDto.getApp())))
                 .andExpect(jsonPath("$.uri", is(hitDto.getUri())))
                 .andExpect(jsonPath("$.hit", is(hitDto.getHit())));
-//                .andExpect(content().json(mapper.writeValueAsString(hit)));
 
     }
 
@@ -103,7 +103,6 @@ class HitControllerTest {
                 .andExpect(jsonPath("$.[0].app", is(viewStats.get(0).getApp())))
                 .andExpect(jsonPath("$.[0].uri", is(viewStats.get(0).getUri())))
                 .andExpect(jsonPath("$.[0].hits", is(viewStats.get(0).getHits()), Long.class));
-        //          .andExpect(content().json(mapper.writeValueAsString(stat)));
 
     }
 }

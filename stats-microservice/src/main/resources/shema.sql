@@ -8,6 +8,3 @@ CREATE TABLE IF NOT EXISTS hits
     ip        VARCHAR(16),
     timestamp TIMESTAMP
 );
-
-
---'YYYY-MM-DDTHH:mm:ss'

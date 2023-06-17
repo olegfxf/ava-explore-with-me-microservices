@@ -39,7 +39,6 @@ public class HttpClient {
                 .queryParam("start", start)
                 .queryParam("end", end)
                 .queryParam("uris", uris)
-                //       .queryParam("uris", "/events/2")
                 .build();
         URI uriGet = uriComponents.expand(host, port).toUri();
 

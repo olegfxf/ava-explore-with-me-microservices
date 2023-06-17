@@ -1,25 +1,25 @@
 package ru.practicum.stats.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
 
 @Getter
 @Setter
-//@AllArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class ViewStats implements Comparable<ViewStats> {
-    private String app;
-    private String uri;
-    private Long hits;
+     String app;
+     String uri;
+     Long hits;
 
-    public ViewStats(String app, String uri, Long hits) {
-        this.app = app;
-        this.uri = uri;
-        this.hits = hits;
-    }
+//    public ViewStats(String app, String uri, Long hits) {
+//        this.app = app;
+//        this.uri = uri;
+//        this.hits = hits;
+//    }
 
 
     @Override

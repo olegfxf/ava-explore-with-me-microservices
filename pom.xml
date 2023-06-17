@@ -21,6 +21,7 @@
 	<modules>
 		<module>stats-microservice</module>
         <module>dto</module>
+        <module>client</module>
     </modules>
 
 

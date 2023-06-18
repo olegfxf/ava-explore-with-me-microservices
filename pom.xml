@@ -19,10 +19,9 @@
 
 
 	<modules>
-		<module>stats-microservice</module>
-        <module>dto</module>
-        <module>client</module>
-    </modules>
+        <module>stats-service</module>
+		<module>ewm-service</module>
+	</modules>
 
 
 	<properties>

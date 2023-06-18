@@ -1,5 +1,6 @@
 package ru.practicum.client;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -22,7 +23,7 @@ public class HttpClient {
 
         HttpRequest requestEvent = HttpRequest.newBuilder()
                 .uri(uriGet)
-                .headers("Content-Type", " text/html;charset=utf-8")
+                .headers(HttpHeaders.CONTENT_TYPE, HttpHeaders.ACCEPT)
                 .build();
 
         HttpResponse<String> responseStats = java.net.http.HttpClient.newBuilder()
@@ -44,7 +45,7 @@ public class HttpClient {
 
         HttpRequest requestEvent = HttpRequest.newBuilder()
                 .uri(uriGet)
-                .headers("Content-Type", " text/html;charset=utf-8")
+                .headers(HttpHeaders.CONTENT_TYPE, HttpHeaders.ACCEPT)
                 .build();
 
         HttpResponse<String> responseStats = java.net.http.HttpClient.newBuilder()
@@ -67,7 +68,7 @@ public class HttpClient {
 
         HttpRequest requestEvent = HttpRequest.newBuilder()
                 .uri(uriGet)
-                .headers("Content-Type", " text/html;charset=utf-8")
+                .headers(HttpHeaders.CONTENT_TYPE, HttpHeaders.ACCEPT)
                 .build();
 
         HttpResponse<String> responseStats = java.net.http.HttpClient.newBuilder()
@@ -87,7 +88,7 @@ public class HttpClient {
 
         HttpRequest requestEvent = HttpRequest.newBuilder()
                 .uri(uriPost)
-                .headers("Content-Type", "application/json")
+                .headers(HttpHeaders.CONTENT_TYPE, "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(hit))
                 .build();
 

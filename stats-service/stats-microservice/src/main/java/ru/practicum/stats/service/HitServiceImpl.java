@@ -1,11 +1,14 @@
-package ru.practicum.stats;
+package ru.practicum.stats.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.practicum.dto.HitDto;
+import ru.practicum.stats.HitRepository;
 import ru.practicum.stats.dto.HitMapper;
 import ru.practicum.stats.dto.ViewStats;
-import ru.practicum.stats.model.Hit;
+import ru.practicum.stats.model.Stats;
+import ru.practicum.stats.service.HitService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,17 +17,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class HitServiceImpl implements HitService {
-    HitRepository hitRepository;
+    private final HitRepository hitRepository;
 
     @Autowired
     public HitServiceImpl(HitRepository hitRepository) {
         this.hitRepository = hitRepository;
     }
 
-    public HitDto save(Hit hit) {
-        return HitMapper.toHitDto(hitRepository.save(hit));
+    public HitDto save(Stats stats) {
+        log.debug("Выполнен запрос на сохренение события");
+        return HitMapper.toHitDto(hitRepository.save(stats));
     }
 
 
@@ -49,6 +54,7 @@ public class HitServiceImpl implements HitService {
         }
 
         Collections.reverse(viewStats);
+        log.debug("Выполнен запрос на предоставление статистики");
         return viewStats;
     }
 }

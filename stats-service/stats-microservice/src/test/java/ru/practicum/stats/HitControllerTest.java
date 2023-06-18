@@ -10,8 +10,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.practicum.dto.HitDto;
+import ru.practicum.stats.controller.HitController;
 import ru.practicum.stats.dto.ViewStats;
-import ru.practicum.stats.model.Hit;
+import ru.practicum.stats.model.Stats;
+import ru.practicum.stats.service.HitServiceImpl;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
@@ -37,7 +39,7 @@ class HitControllerTest {
     private MockMvc mvc;
 
     private HitDto hitDto;
-    private Hit hit = new Hit();
+    private Stats stats = new Stats();
     private ViewStats viewStats = new ViewStats();
 
 
@@ -53,7 +55,7 @@ class HitControllerTest {
         viewStats.setUri("/events");
         viewStats.setHits(5L);
 
-        hit = hit.toBuilder()
+        stats = stats.toBuilder()
                 .id(1L)
                 .uri("/events")
                 .ip("77.5.10.66")

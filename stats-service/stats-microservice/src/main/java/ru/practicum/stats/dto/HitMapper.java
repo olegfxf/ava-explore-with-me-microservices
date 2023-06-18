@@ -1,20 +1,20 @@
 package ru.practicum.stats.dto;
 
 import ru.practicum.dto.HitDto;
-import ru.practicum.stats.model.Hit;
+import ru.practicum.stats.model.Stats;
 
 public class HitMapper {
-    public static Hit toHit(HitDto hitDto) {
-        return Hit.builder()
+    public static Stats toHit(HitDto hitDto) {
+        return Stats.builder()
                 .app(hitDto.getApp())
                 .uri(hitDto.getUri())
                 .build();
     }
 
-    public static HitDto toHitDto(Hit hit) {
+    public static HitDto toHitDto(Stats stats) {
         return HitDto.builder()
-                .app(hit.getApp())
-                .uri(hit.getUri())
+                .app(stats.getApp())
+                .uri(stats.getUri())
                 .build();
     }
 }

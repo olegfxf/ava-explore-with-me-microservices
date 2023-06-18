@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "hits")
-public class Hit {
+public class Stats {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

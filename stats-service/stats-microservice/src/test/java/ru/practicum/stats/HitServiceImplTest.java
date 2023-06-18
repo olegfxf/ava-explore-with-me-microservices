@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import ru.practicum.stats.dto.ViewStats;
-import ru.practicum.stats.model.Hit;
+import ru.practicum.stats.model.Stats;
+import ru.practicum.stats.service.HitService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @ActiveProfiles("ci,test")
 class HitServiceImplTest {
-    Hit hit = new Hit();
+    Stats stats = new Stats();
 
     @Autowired
     private HitRepository hitRepository;
@@ -36,7 +37,7 @@ class HitServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        hit = Hit.builder()
+        stats = Stats.builder()
                 .uri("/events")
                 .ip("77.5.10.66")
                 .app("main-service")
@@ -50,7 +51,7 @@ class HitServiceImplTest {
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
     @Test
     void save() {
-        hitService.save(hit);
+        hitService.save(stats);
         assertEquals(1, hitRepository.findAll().size());
     }
 
@@ -58,15 +59,15 @@ class HitServiceImplTest {
     @Test
     void getStats() {
 
-        hitService.save(hit);
-        hit.setId(null);
-        hit.setApp("main-service1");
-        hit.setTimestamp(localDateTimePlus);
-        hitService.save(hit);
-        hit.setId(null);
-        hit.setApp("main-service2");
-        hit.setTimestamp(localDateTimeMinus);
-        hitService.save(hit);
+        hitService.save(stats);
+        stats.setId(null);
+        stats.setApp("main-service1");
+        stats.setTimestamp(localDateTimePlus);
+        hitService.save(stats);
+        stats.setId(null);
+        stats.setApp("main-service2");
+        stats.setTimestamp(localDateTimeMinus);
+        hitService.save(stats);
 
         System.out.println(hitRepository.findAll() + " QQQ");
 

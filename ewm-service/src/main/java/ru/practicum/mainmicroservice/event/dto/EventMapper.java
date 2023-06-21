@@ -10,7 +10,7 @@ import ru.practicum.mainmicroservice.user.dto.UserMapper;
 
 @Component
 public class EventMapper {
-    static CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
     @Autowired
     public EventMapper(CategoryRepository categoryRepository) {
@@ -18,10 +18,10 @@ public class EventMapper {
     }
 
     public static Event toEvent(NewEventDto newEventDto) {
-        Category category = categoryRepository.findById(newEventDto.getCategory()).get();
+        //Category category = categoryRepository.findById(newEventDto.getCategory()).get();
         return Event.builder()
                 .annotation(newEventDto.getAnnotation())
-                .category(category)
+                .category(new Category())
                 .description(newEventDto.getDescription())
                 .eventDate(newEventDto.getEventDate())
                 .location(newEventDto.getLocation())

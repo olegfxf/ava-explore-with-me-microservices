@@ -19,7 +19,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>ru.practicum.thepublic.MainPublicApplication</start-class>
+<!--        <start-class>ru.practicum.mainmicroservice.MainPublicApplication</start-class>-->
     </properties>
 
     <dependencies>
@@ -131,52 +131,52 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>3.1.2</version>-->
+<!--                <configuration>-->
+<!--                    <skipTests>true</skipTests>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.10</version>
-                <configuration>
-                    <imageName>${project.artifactId}</imageName>
-                    <baseImage>amazoncorretto:11-alpine-jdk</baseImage>
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar", "-Xdebug
-                        -Xrunjdwp:server=y,transport=dt_socket,suspend=n"]
-                    </entryPoint>
-                    <!-- copy the service's jar file from target into the root directory of the image -->
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
-                    <dependency>
-                        <groupId>javax.activation</groupId>
-                        <artifactId>activation</artifactId>
-                        <version>1.1.1</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>docker-maven-plugin</artifactId>-->
+<!--                <version>0.4.10</version>-->
+<!--                <configuration>-->
+<!--                    <imageName>${project.artifactId}</imageName>-->
+<!--                    <baseImage>amazoncorretto:11-alpine-jdk</baseImage>-->
+<!--                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar", "-Xdebug-->
+<!--                        -Xrunjdwp:server=y,transport=dt_socket,suspend=n"]-->
+<!--                    </entryPoint>-->
+<!--                    &lt;!&ndash; copy the service's jar file from target into the root directory of the image &ndash;&gt;-->
+<!--                    <resources>-->
+<!--                        <resource>-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            <directory>${project.build.directory}</directory>-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>build-image</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <dependencies>-->
+<!--                    &lt;!&ndash; https://mvnrepository.com/artifact/javax.activation/activation &ndash;&gt;-->
+<!--                    <dependency>-->
+<!--                        <groupId>javax.activation</groupId>-->
+<!--                        <artifactId>activation</artifactId>-->
+<!--                        <version>1.1.1</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
 
 
             <plugin>

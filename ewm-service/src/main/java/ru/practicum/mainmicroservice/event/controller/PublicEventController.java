@@ -20,15 +20,14 @@ public class PublicEventController {
                                 @RequestParam(defaultValue = "false") Boolean onlyAvailable,
                                 @RequestParam String sort,
                                 @RequestParam int from,
-                                @RequestParam int size){
+                                @RequestParam int size) {
         return null;
     }
 
 
-    public EventFullDto getById(@RequestParam Long id){
+    public EventFullDto getById(@RequestParam Long id) {
         return null;
     }
-
 
 
 }

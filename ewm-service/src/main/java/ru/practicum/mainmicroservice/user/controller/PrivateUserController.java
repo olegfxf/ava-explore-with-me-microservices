@@ -13,6 +13,7 @@ import ru.practicum.mainmicroservice.user.service.PrivateUserService;
 @RequestMapping("/users/")
 public class PrivateUserController {
     PrivateUserService privateUserService;
+
     @Autowired
     public PrivateUserController(PrivateUserService privateUserService) {
         this.privateUserService = privateUserService;

@@ -29,12 +29,12 @@ public class ExceptionHandlers {
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleDataIntegrityException(final DataIntegrityViolationException e) {
-        ApiError apiError =  new ApiError.ApiErrorBuilder()
+        ApiError apiError = new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())
                 .reason("Integrity constraint has been violated.")
                 .status(HttpStatus.CONFLICT)
-                .timestamp( LocalDateTime.now())
+                .timestamp(LocalDateTime.now())
                 .build();
         System.out.println(" EEE" + apiError.toString());
         return apiError;
@@ -48,7 +48,7 @@ public class ExceptionHandlers {
                 .message(e.getMessage())
                 .reason("Object not found " + request.getDescription(false))
                 .status(HttpStatus.NOT_FOUND)
-                .timestamp( LocalDateTime.now())
+                .timestamp(LocalDateTime.now())
                 .build();
     }
 
@@ -60,7 +60,7 @@ public class ExceptionHandlers {
                 .message(e.getMessage())
                 .reason(request.getDescription(false))
                 .status(HttpStatus.FORBIDDEN)
-                .timestamp( LocalDateTime.now())
+                .timestamp(LocalDateTime.now())
                 .build();
     }
 
@@ -72,7 +72,7 @@ public class ExceptionHandlers {
                 .message(e.getMessage())
                 .reason(request.getDescription(false))
                 .status(HttpStatus.FORBIDDEN)
-                .timestamp( LocalDateTime.now())
+                .timestamp(LocalDateTime.now())
                 .build();
     }
 
@@ -84,7 +84,7 @@ public class ExceptionHandlers {
                 .message(e.getMessage())
                 .reason("Incorrectly made request.")
                 .status(HttpStatus.BAD_REQUEST)
-                .timestamp( LocalDateTime.now())
+                .timestamp(LocalDateTime.now())
                 .build();
     }
 }

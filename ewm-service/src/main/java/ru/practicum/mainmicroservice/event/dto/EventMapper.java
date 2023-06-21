@@ -3,7 +3,6 @@ package ru.practicum.mainmicroservice.event.dto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.practicum.mainmicroservice.category.dto.CategoryDto;
-import ru.practicum.mainmicroservice.category.dto.CategoryMapper;
 import ru.practicum.mainmicroservice.category.model.Category;
 import ru.practicum.mainmicroservice.category.repository.CategoryRepository;
 import ru.practicum.mainmicroservice.event.model.Event;
@@ -33,7 +32,7 @@ public class EventMapper {
                 .build();
     }
 
-    public static EventFullDto toEventFullDto(Event event){
+    public static EventFullDto toEventFullDto(Event event) {
         return EventFullDto.builder()
                 .id(event.getId())
                 .category(CategoryDto.builder().build())

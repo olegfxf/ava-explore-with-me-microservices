@@ -7,7 +7,6 @@ import ru.practicum.mainmicroservice.category.dto.CategoryDto;
 import ru.practicum.mainmicroservice.category.dto.NewCategoryDto;
 import ru.practicum.mainmicroservice.category.service.AdminCategoryService;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.user.dto.UserShortDto;
 
 import javax.validation.Valid;
 
@@ -35,7 +34,7 @@ public class AdminCategoryController {
     }
 
     @PatchMapping("{id}")
-    public CategoryDto updateCategory(@PathVariable Long id){
+    public CategoryDto updateCategory(@PathVariable Long id) {
         log.debug(String.valueOf(LogMessages.TRY_UPDATE), "категория");
         return adminCategoryService.updateCategory(id);
     }

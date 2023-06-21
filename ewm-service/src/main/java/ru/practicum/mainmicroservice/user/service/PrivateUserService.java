@@ -7,7 +7,6 @@ import ru.practicum.mainmicroservice.event.dto.EventMapper;
 import ru.practicum.mainmicroservice.event.dto.NewEventDto;
 import ru.practicum.mainmicroservice.event.model.Event;
 import ru.practicum.mainmicroservice.event.repository.EventRepository;
-import ru.practicum.mainmicroservice.user.dto.UserMapper;
 import ru.practicum.mainmicroservice.user.repository.UserRepository;
 
 @Service

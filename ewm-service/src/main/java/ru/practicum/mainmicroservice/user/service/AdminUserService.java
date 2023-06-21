@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.mainmicroservice.exception.NotFoundException;
@@ -15,7 +14,6 @@ import ru.practicum.mainmicroservice.user.dto.UserMapper;
 import ru.practicum.mainmicroservice.user.model.User;
 import ru.practicum.mainmicroservice.user.repository.UserRepository;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +48,7 @@ public class AdminUserService {
             return Collections.EMPTY_LIST;
         } else {
             log.debug(String.valueOf(LogMessages.GET_ALL), "пользователи");
-            Page<User>  users = userRepository.findAllByIdIn(ids, PageRequest.of(from / size, size));
+            Page<User> users = userRepository.findAllByIdIn(ids, PageRequest.of(from / size, size));
             return users.stream().map(e -> UserMapper.toUserDto(e)).collect(Collectors.toList());
         }
     }

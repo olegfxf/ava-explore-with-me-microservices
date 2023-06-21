@@ -2,8 +2,6 @@ package ru.practicum.mainmicroservice.event.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.practicum.mainmicroservice.category.dto.CategoryDto;
-import ru.practicum.mainmicroservice.category.dto.NewCategoryDto;
 import ru.practicum.mainmicroservice.event.model.Location;
 
 import java.time.LocalDateTime;
@@ -15,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class NewEventDto {
 
-@NonNull
+    @NonNull
     String annotation;
 
     Long category;

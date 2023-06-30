@@ -5,30 +5,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @RestControllerAdvice
 public class ExceptionHandlers {
 
-//    @ExceptionHandler
-//    @ResponseStatus(HttpStatus.CONFLICT)
-//    public ApiError handleConflictException(final DataIntegrityViolationException e) {
-//        return new ApiError.ApiErrorBuilder()
-//                .errors(List.of(e.getClass().getName()))
-//                .message(e.getMessage())
-//                .reason("The required object was found.")
-//                .status(HttpStatus.CONFLICT)
-//                .timestamp( LocalDateTime.now())
-//                .build();
-//    }
-
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ApiError handleDataIntegrityException(final DataIntegrityViolationException e) {
+    public ApiError handleDataIntegrityException(final DataIntegrityViolationException e, WebRequest request) {
+        System.out.println("CONFLICT");
         ApiError apiError = new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())
@@ -36,7 +25,7 @@ public class ExceptionHandlers {
                 .status(HttpStatus.CONFLICT)
                 .timestamp(LocalDateTime.now())
                 .build();
-        System.out.println(" EEE" + apiError.toString());
+        System.out.println(" EEE " + apiError.toString());
         return apiError;
     }
 
@@ -53,32 +42,34 @@ public class ExceptionHandlers {
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleValidationException(final BadRequestException e, WebRequest request) {
         return new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())
                 .reason(request.getDescription(false))
-                .status(HttpStatus.FORBIDDEN)
+                .status(HttpStatus.BAD_REQUEST)
                 .timestamp(LocalDateTime.now())
                 .build();
     }
 
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiError handleInternalServerErrorException(final HttpServerErrorException.InternalServerError e, WebRequest request) {
+    @ExceptionHandler({ConstraintViolationException.class, IllegalStateException.class})
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ApiError handleThrowableExceptions(final Throwable e) {
+        System.out.println("CONFLICT");
         return new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())
-                .reason(request.getDescription(false))
-                .status(HttpStatus.FORBIDDEN)
+                .reason("Incorrectly made request.")
+                .status(HttpStatus.BAD_REQUEST)
                 .timestamp(LocalDateTime.now())
                 .build();
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiError handleThrowableExceptions(final Throwable e) {
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ApiError handleConstraintViolationException(final ConflictException e) {
+        System.out.println("CONFLICT");
         return new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())

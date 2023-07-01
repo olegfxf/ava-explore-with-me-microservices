@@ -24,11 +24,11 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>ru.practicum.client</groupId>
-            <artifactId>client</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>ru.practicum.client</groupId>-->
+<!--            <artifactId>client</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>ru.practicum.dto</groupId>

@@ -10,17 +10,19 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class Client {
-    public static HttpResponse<String> http(String start, String end, String uris)
+    public static HttpResponse<String> http(String start, String end, String host1, String uris)
             throws IOException, InterruptedException {
 
+        System.out.println("ZZZHOST1 " + host1);
         String host = "localhost";
         String port = "9090";
         String uris1 = "/" + uris;
         UriComponents uriComponents = UriComponentsBuilder
-                .fromUriString("http://{host}:{port}/stats")
+                .fromUriString(host1 + "/stats")
+               // .fromUriString("http://{host}:{port}/stats")
                 .queryParam("start", start)
                 .queryParam("end", end)
-                .queryParam("uris1", uris)
+                .queryParam("uris", uris)
                 .build();
         URI uriGet = uriComponents.expand(host, port).toUri();
         //       System.out.println("ZZZ8  " + uriGet.toString());

@@ -13,9 +13,13 @@ public class HttpClient {
     String host = "localhost";
     String port = "9090";
 
+
+
+
     public HttpResponse<String> getStats(String start, String end) throws IOException, InterruptedException {
         UriComponents uriComponents = UriComponentsBuilder
-                .fromUriString("http://{host}:{port}/stats")
+                .fromUriString("${stats-server.url}" + "/stats")
+                //.fromUriString("http://{host}:{port}/stats")
                 .queryParam("start", start)
                 .queryParam("end", end)
                 .build();
@@ -79,11 +83,14 @@ public class HttpClient {
     }
 
 
-    public HttpResponse<String> postHit(String hit) throws IOException, InterruptedException {
+    public HttpResponse<String> postHit(String host, String hit) throws IOException, InterruptedException {
+
+        System.out.println("ZZZHOST2 " + host);
 
         UriComponents uriComponents = UriComponentsBuilder
                // .fromUriString("http://{host}:{port}/hit")
-                .fromUriString("http://localhost:9090/hit")
+                .fromUriString(host + "/hit")
+               // .fromUriString("http://localhost:9090/hit")
                 .build();
         URI uriPost = uriComponents.expand(host, port).toUri();
 

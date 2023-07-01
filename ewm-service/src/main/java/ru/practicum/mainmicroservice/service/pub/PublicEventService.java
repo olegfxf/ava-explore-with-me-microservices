@@ -18,6 +18,7 @@ import ru.practicum.mainmicroservice.model.State;
 import ru.practicum.mainmicroservice.model.Status;
 import ru.practicum.mainmicroservice.repository.EventRepository;
 import ru.practicum.mainmicroservice.repository.RequestRepository;
+import ru.practicum.mainmicroservice.stats.ConfigClient;
 import ru.practicum.mainmicroservice.stats.StatsServer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +39,17 @@ public class PublicEventService {
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     final EventRepository eventRepository;
     final RequestRepository requestRepository;
+    final StatsServer statsServer;
+    final ConfigClient configClient;
 
     @Autowired
     public PublicEventService(EventRepository eventRepository,
+                              StatsServer statsServer,
+                              ConfigClient configClient,
                               RequestRepository requestRepository) {
         this.eventRepository = eventRepository;
+        this.statsServer = statsServer;
+        this.configClient = configClient;
         this.requestRepository = requestRepository;
     }
 
@@ -88,7 +95,7 @@ public class PublicEventService {
                 .peek(e -> incrementViews(e.getId()))
                 .peek(e -> {
                     try {
-                        StatsServer.saveHit(request);
+                        statsServer.saveHit(request);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     } catch (InterruptedException ex) {
@@ -111,9 +118,13 @@ public class PublicEventService {
             throw new NotFoundException("Событие не опубликовано");
 
 
+
+        System.out.println("ZZZ! " + configClient.getStatServerUrl());
+
+
         System.out.println("ZZZ2 " + eventRepository.save(event).getViews());
-        StatsServer.saveHit(request);
-        Integer currentViews = StatsServer.requeryViews(request.getRequestURI());
+        statsServer.saveHit(request);
+        Integer currentViews = statsServer.requeryViews(request.getRequestURI());
         System.out.println("ZZZ3 " + currentViews);
         event.setViews(currentViews);
         System.out.println("ZZZ4 " + event.getViews());

@@ -41,7 +41,7 @@ public class AdminUserController {
     public List<UserDto> getAllUser(@RequestParam(required = false) List<Long> ids,
                                     @RequestParam(defaultValue = "0") int from,
                                     @RequestParam(defaultValue = "10") int size) {
-        System.out.println(" WWW1");
+
         log.debug(String.valueOf(LogMessages.GET_ALL), "ПОЛЬЗОВАТЕЛЕЙ");
         return adminUserService.getAllUser(ids, from, size);
     }

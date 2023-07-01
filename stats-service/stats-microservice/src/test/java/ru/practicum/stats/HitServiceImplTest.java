@@ -69,8 +69,6 @@ class HitServiceImplTest {
         stats.setTimestamp(localDateTimeMinus);
         hitService.save(stats);
 
-        System.out.println(hitRepository.findAll() + " QQQ");
-
         List<ViewStats> viewStatsList = hitService.getStats("2020-03-05 00:00:00", "2020-07-05 00:00:00", uris, true);
         assertEquals(3, viewStatsList.size());
 

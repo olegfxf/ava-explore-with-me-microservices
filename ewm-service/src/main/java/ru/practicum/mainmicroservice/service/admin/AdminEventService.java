@@ -93,10 +93,6 @@ public class AdminEventService {
                 .map(State::valueOf)
                 .collect(Collectors.toList());
 
-        System.out.println(userIds + "userIds");
-        System.out.println(states + "states");
-        System.out.println(categoryIds + "categoryIds");
-
         Pageable pageable = (Pageable) PageRequest.of(from / size, size);
         LocalDateTime start = rangeStart == null ? null : LocalDateTime.parse(rangeStart, dateTimeFormatter);
         LocalDateTime end = rangeEnd == null ? null : LocalDateTime.parse(rangeEnd, dateTimeFormatter);

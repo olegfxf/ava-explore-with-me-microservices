@@ -82,7 +82,6 @@ public class HttpClient {
     public HttpResponse<String> postHit(String hit) throws IOException, InterruptedException {
 
         UriComponents uriComponents = UriComponentsBuilder
-                // .fromUriString("http://{host}:{port}/hit")
                 .fromUriString("http://localhost:9090/hit")
                 .build();
         URI uriPost = uriComponents.expand(host, port).toUri();

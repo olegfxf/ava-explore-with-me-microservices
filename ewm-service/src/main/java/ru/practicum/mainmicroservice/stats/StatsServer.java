@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-//import ru.practicum.client.HttpClient;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -49,7 +48,6 @@ public class StatsServer {
         String start = LocalDateTime.now().minusYears(1).format(dateTimeFormatter);
         String end = LocalDateTime.now().plusYears(1).format(dateTimeFormatter);
 
-        System.out.println("!!!!!!!!!!!");
         String host = configClient.getStatServerUrl();
 
         HttpResponse<String> httpResponse1 = Client.http(start, end, host, uris + "&unique=true"); //= "&unique=true")

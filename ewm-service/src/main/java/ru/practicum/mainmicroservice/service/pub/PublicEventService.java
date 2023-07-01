@@ -86,9 +86,6 @@ public class PublicEventService {
             }
         }
 
-//        //    List<Event> eventList = events.stream().
-//        System.out.println("   ZZZZ   " + request.getRequestURI());
-        //       StatsServer.saveHit(request);
 
         return events
                 .stream()
@@ -117,23 +114,16 @@ public class PublicEventService {
         if (event.getState() == null || !event.getState().equals(State.PUBLISHED))
             throw new NotFoundException("Событие не опубликовано");
 
-
-
-        System.out.println("ZZZ! " + configClient.getStatServerUrl());
-
-
-        System.out.println("ZZZ2 " + eventRepository.save(event).getViews());
         statsServer.saveHit(request);
-        Integer currentViews = statsServer.requeryViews(request.getRequestURI());
-        System.out.println("ZZZ3 " + currentViews);
-        event.setViews(currentViews);
-        System.out.println("ZZZ4 " + event.getViews());
-        System.out.println("ZZZ5 " + eventRepository.save(event).getViews());
 
-        //   incrementViews(event.getId());
+        Integer currentViews = statsServer.requeryViews(request.getRequestURI());
+        event.setViews(currentViews);
+        eventRepository.save(event);
+
+
         log.debug(String.valueOf(LogMessages.GET), "СОБЫТИЕ");
         return EventMapper.toEventFullDto(event);
-        //  .orElseThrow(() -> new NotFoundException("Событие не существует")));
+
     }
 
 

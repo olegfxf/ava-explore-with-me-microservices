@@ -29,7 +29,6 @@ public class AdminCategoryController {
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto saveCategory(@Valid @RequestBody NewCategoryDto newCategoryDto) {
         log.debug(String.valueOf(LogMessages.TRY_ADD), "КАТЕГОРИЯ");
-        System.out.println(newCategoryDto.getName().length() + " length");
         return adminCategoryService.saveCategory(newCategoryDto);
     }
 

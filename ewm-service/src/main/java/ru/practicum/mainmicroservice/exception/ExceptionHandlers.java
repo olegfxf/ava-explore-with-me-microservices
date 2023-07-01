@@ -17,7 +17,6 @@ public class ExceptionHandlers {
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleDataIntegrityException(final DataIntegrityViolationException e, WebRequest request) {
-        System.out.println("CONFLICT");
         ApiError apiError = new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())
@@ -25,7 +24,7 @@ public class ExceptionHandlers {
                 .status(HttpStatus.CONFLICT)
                 .timestamp(LocalDateTime.now())
                 .build();
-        System.out.println(" EEE " + apiError.toString());
+
         return apiError;
     }
 
@@ -56,7 +55,6 @@ public class ExceptionHandlers {
     @ExceptionHandler({ConstraintViolationException.class, IllegalStateException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleThrowableExceptions(final Throwable e) {
-        System.out.println("CONFLICT");
         return new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())
@@ -69,7 +67,6 @@ public class ExceptionHandlers {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConstraintViolationException(final ConflictException e) {
-        System.out.println("CONFLICT");
         return new ApiError.ApiErrorBuilder()
                 .errors(List.of(e.getClass().getName()))
                 .message(e.getMessage())

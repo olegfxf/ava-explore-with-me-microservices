@@ -16,14 +16,14 @@ public interface HitRepository extends JpaRepository<Stats, Long> {
     @Query(" SELECT new ru.practicum.stats.dto.ViewStats(app, uri, COUNT(ip)) " +
             " FROM Stats " +
             " WHERE timestamp BETWEEN :start AND :end " +
-            " GROUP BY app, uri"
+            " GROUP BY app, uri "
     )
     List<ViewStats> getStatsWithoutUri(LocalDateTime start, LocalDateTime end);
 
     @Query(" SELECT new ru.practicum.stats.dto.ViewStats(app, uri, COUNT(ip)) " +
             " FROM Stats " +
             " WHERE uri IN :uris AND timestamp BETWEEN :start AND :end " +
-            " GROUP BY app, uri"
+            " GROUP BY app, uri "
     )
     List<ViewStats> getStatsWithUri(LocalDateTime start, LocalDateTime end, List<String> uris);
 

@@ -53,8 +53,12 @@ public class HitServiceImpl implements HitService {
                 viewStats = hitRepository.getStatsWithoutUri(start, end);
         }
 
-        Collections.reverse(viewStats);
+        Collections.sort(viewStats, (d1, d2) -> {
+            return d2.getHits().intValue() - d1.getHits().intValue();
+        });
         log.debug("Выполнен запрос на предоставление статистики");
         return viewStats;
     }
+
+
 }

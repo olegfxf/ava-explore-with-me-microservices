@@ -62,6 +62,7 @@ wait_for_wrapper()
     trap "kill -INT -$WAITFORIT_PID" INT
     wait $WAITFORIT_PID
     WAITFORIT_RESULT=$?
+    WAITFORIT_RESULT=0
     if [[ $WAITFORIT_RESULT -ne 0 ]]; then
         echoerr "$WAITFORIT_cmdname: timeout occurred after waiting $WAITFORIT_TIMEOUT seconds for $WAITFORIT_HOST:$WAITFORIT_PORT"
     fi

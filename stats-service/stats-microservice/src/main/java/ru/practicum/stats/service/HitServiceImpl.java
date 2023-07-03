@@ -118,8 +118,12 @@ public class HitServiceImpl implements HitService {
         stats.setTimestamp(LocalDateTime.now());
         stats.setApp("app");
         stats.setUri("/events");
+        System.out.println("az = " + az);
+        System.out.println(" ZZZ0" + hitRepository.findAll().size());
         if (az.equals(hitRepository.findAll().size())) {
+            System.out.println(" ZZZ1" + hitRepository.findAll().size());
             hitRepository.save(stats);
+            System.out.println(" ZZZ2" + hitRepository.findAll().size());
         }
         az = hitRepository.findAll().size();
         Collections.sort(viewStats, (d1, d2) -> {

@@ -30,27 +30,37 @@ public class HitServiceImpl implements HitService {
 
     public HitDto save(Stats stats) {
 
-        log.debug("Выполнен запрос на сохренение события");
-        System.out.println("ZZZ5 saveC на запись " + stats.getId() + "   " + stats.getApp() + "    " + stats.getUri());
+ //       System.out.println("ZZZ5 saveC на запись " + stats.getId() + "   " + stats.getApp() + "    " + stats.getUri());
         List<String> s1 = hitRepository.findAll().stream().map(e->e.getUri()).collect(Collectors.toList());
         Integer hits0 = s1.stream().filter(e->e.equals(stats.getUri())).collect(Collectors.toList()).size();
+
         HitDto hitDto = HitMapper.toHitDto(hitRepository.save(stats));
-        System.out.println("ZZZ6  C заисано ////////////");
+
+        System.out.println("Запись в репо  ////////////");
         System.out.println("hitDto" + hitDto);
+
         List<String> s2 = hitRepository.findAll().stream().map(e->e.getUri()).collect(Collectors.toList());
         Integer hits = s2.stream().filter(e->e.equals(stats.getUri())).collect(Collectors.toList()).size();
-        System.out.println("hits = " + hits0 + "   " + hits);
         hitDto.setHit(hits);
 
-        if (stats.getUri().equals("/events")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            List<ViewStats> viewStats = getStats("2020-05-05 00:00:00", "2035-05-05 00:00:00", Optional.of(List.of("/events")), false);
-            System.out.println("1HITS " + viewStats.get(0).getHits());
-        }
+        System.out.println("hits = " + hits0 + "   " + hits);
+        System.out.println("//////////////////////////////");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime start = LocalDateTime.parse("2020-05-05 00:00:00", formatter);
+        LocalDateTime end = LocalDateTime.parse("2035-05-05 00:00:00", formatter);
+        List<ViewStats> viewStats1 = hitRepository.getStatsWithoutUri(start, end);
+        viewStats1.stream().forEach(e -> System.out.println("App = " + e.getApp() + "  Url = " + e.getUri() + "  Hits = " + e.getHits()));
 
-        System.out.println(stats.getUri());
-        hitRepository.findAll().stream().map(e->e.getUri()).filter(e->e== stats.getUri()).collect(Collectors.toList()).size();
 
+//        if (stats.getUri().equals("/events")) {
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//            List<ViewStats> viewStats = getStats("2020-05-05 00:00:00", "2035-05-05 00:00:00", Optional.of(List.of("/events")), false);
+//            System.out.println("1HITS " + viewStats.get(0).getHits());
+//        }
+
+       // System.out.println(stats.getUri());
+       // hitRepository.findAll().stream().map(e->e.getUri()).filter(e->e== stats.getUri()).collect(Collectors.toList()).size();
+        log.debug("Выполнен запрос на сохранение события");
         return hitDto;
     }
 
@@ -94,9 +104,8 @@ public class HitServiceImpl implements HitService {
         }
 
         if (uris.isPresent() && !isUnique && uris.get().get(0).equals("/events")) {
-            System.out.println("XXX2 Serv viewStats.size() = " + viewStats.size());
+            System.out.println("Продоставление инф из репо");
             viewStats.stream().forEach(e -> System.out.println("App = " + e.getApp() + "  Url = " + e.getUri() + "  Hits = " + e.getHits()));
-
             System.out.println("//////////////////////////////");
             List<ViewStats> viewStats1 = hitRepository.getStatsWithoutUri(start, end);
             viewStats1.stream().forEach(e -> System.out.println("App = " + e.getApp() + "  Url = " + e.getUri() + "  Hits = " + e.getHits()));

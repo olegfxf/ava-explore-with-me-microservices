@@ -38,7 +38,6 @@ public class HitController {
                                     @RequestParam(required = false) Optional<List<String>> uris,
                                     @RequestParam(defaultValue = "false") boolean unique) {
         log.debug("Поступил запрос на предоставление статистики");
-        System.out.println("XXX1 Contr" + uris);
         return hitService.getStats(start, end, uris, unique);
     }
 

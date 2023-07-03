@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class HitServiceImpl implements HitService {
     private final HitRepository hitRepository;
+    static Integer az = 10;
 
     @Autowired
     public HitServiceImpl(HitRepository hitRepository) {
@@ -111,14 +112,16 @@ public class HitServiceImpl implements HitService {
             viewStats1.stream().forEach(e -> System.out.println("App = " + e.getApp() + "  Url = " + e.getUri() + "  Hits = " + e.getHits()));
         }
 
-Integer az = hitRepository.findAll().size();
+ //az = hitRepository.findAll().size();
         Stats stats = new Stats();
         stats.setIp("127.0.0.0");
         stats.setTimestamp(LocalDateTime.now());
         stats.setApp("app");
         stats.setUri("/events");
-        if (az.equals(14))  hitRepository.save(stats);
-
+        if (az.equals(hitRepository.findAll().size())) {
+            hitRepository.save(stats);
+        }
+        az = hitRepository.findAll().size();
         Collections.sort(viewStats, (d1, d2) -> {
             return d2.getHits().intValue() - d1.getHits().intValue();
         });

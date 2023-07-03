@@ -42,9 +42,11 @@ public class HitServiceImpl implements HitService {
         System.out.println("hits = " + hits0 + "   " + hits);
         hitDto.setHit(hits);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        List<ViewStats> viewStats = getStats("2020-05-05 00:00:00", "2035-05-05 00:00:00", Optional.of(List.of("/events")), false);
-        System.out.println("1HITS " + viewStats.get(0).getHits() );
+        if (stats.getUri().equals("/events")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            List<ViewStats> viewStats = getStats("2020-05-05 00:00:00", "2035-05-05 00:00:00", Optional.of(List.of("/events")), false);
+            System.out.println("1HITS " + viewStats.get(0).getHits());
+        }
 
         System.out.println(stats.getUri());
         hitRepository.findAll().stream().map(e->e.getUri()).filter(e->e== stats.getUri()).collect(Collectors.toList()).size();
@@ -71,22 +73,36 @@ public class HitServiceImpl implements HitService {
 
 
         if (isUnique) {
-            if (uris.isPresent())
+            if (uris.isPresent()) {
+                System.out.println("*");
                 viewStats = hitRepository.getStatsWithUriDistinct(start, end, uris.get());
-            else
+            }
+            else {
+                System.out.println("**");
                 viewStats = hitRepository.getStatsWithoutUriDistinct(start, end);
+            }
 
         } else {
             if (uris.isPresent()) {
-                System.out.println("!!!");
+                System.out.println("***");
                 viewStats = hitRepository.getStatsWithUri(start, end, uris.get());
             }
-            else
+            else {
+                System.out.println("****");
                 viewStats = hitRepository.getStatsWithoutUri(start, end);
+            }
         }
 
-        System.out.println("XXX2 Serv viewStats.size() = " + viewStats.size());
-        viewStats.stream().forEach(System.out::println);
+        if (uris.isPresent() && !isUnique && uris.get().get(0).equals("/events")) {
+            System.out.println("XXX2 Serv viewStats.size() = " + viewStats.size());
+            viewStats.stream().forEach(e -> System.out.println("App = " + e.getApp() + "  Url = " + e.getUri() + "  Hits = " + e.getHits()));
+
+            System.out.println("//////////////////////////////");
+            List<ViewStats> viewStats1 = hitRepository.getStatsWithoutUri(start, end);
+            viewStats1.stream().forEach(e -> System.out.println("App = " + e.getApp() + "  Url = " + e.getUri() + "  Hits = " + e.getHits()));
+        }
+
+
 
         Collections.sort(viewStats, (d1, d2) -> {
             return d2.getHits().intValue() - d1.getHits().intValue();

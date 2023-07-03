@@ -79,10 +79,35 @@ public class HttpClient {
     }
 
 
-    public HttpResponse<String> postHit(String hit) throws IOException, InterruptedException {
+//    public HttpResponse<String> postHit(String hit) throws IOException, InterruptedException {
+//
+//        UriComponents uriComponents = UriComponentsBuilder
+//                .fromUriString("http://localhost:9090/hit")
+//                .build();
+//        URI uriPost = uriComponents.expand(host, port).toUri();
+//
+//        HttpRequest requestEvent = HttpRequest.newBuilder()
+//                .uri(uriPost)
+//                .headers(HttpHeaders.CONTENT_TYPE, "application/json")
+//                .POST(HttpRequest.BodyPublishers.ofString(hit))
+//                .build();
+//
+//        HttpResponse<String> responseEvent = java.net.http.HttpClient.newBuilder()
+//                .build()
+//                .send(requestEvent, HttpResponse.BodyHandlers.ofString());
+//
+//        return responseEvent;
+//    }
+
+
+
+
+    //String port = "9090";
+
+    public HttpResponse<String> postHit(String host, String hit) throws IOException, InterruptedException {
 
         UriComponents uriComponents = UriComponentsBuilder
-                .fromUriString("http://localhost:9090/hit")
+                .fromUriString(host + "/hit")
                 .build();
         URI uriPost = uriComponents.expand(host, port).toUri();
 
@@ -98,6 +123,9 @@ public class HttpClient {
 
         return responseEvent;
     }
+
+
+
 }
 
 

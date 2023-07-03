@@ -57,7 +57,7 @@ public class PublicEventService {
                                             String rangeEnd, Boolean onlyAvailable, String sort, Integer from,
                                             Integer size, HttpServletRequest request)
             throws IOException, InterruptedException {
-
+        statsServer.saveHit(request);
 
         if (categories.size() < 1 || (text != null && text.length() < 2))
             throw new BadRequestException("Текст запроса должен содержать сообщение длинойбольше двух");
@@ -86,19 +86,20 @@ public class PublicEventService {
             }
         }
 
+      //  statsServer.saveHit(request);
 
         return events
                 .stream()
                 .peek(e -> incrementViews(e.getId()))
-                .peek(e -> {
-                    try {
-                        statsServer.saveHit(request);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    } catch (InterruptedException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                })
+//                .peek(e -> {
+//                    try {
+//                        statsServer.saveHit(request);
+//                    } catch (IOException ex) {
+//                        throw new RuntimeException(ex);
+//                    } catch (InterruptedException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                })
 
                 .map(EventMapper::toEventShortDto)
                 .collect(Collectors.toList());

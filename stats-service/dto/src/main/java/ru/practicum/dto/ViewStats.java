@@ -7,18 +7,19 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
-public class ViewStats implements Comparable<ViewStats> {
+public class ViewStats { //implements Comparable<ViewStats> {
     String app;
     String uri;
     Long hits;
 
-    @Override
-    public int compareTo(ViewStats viewStats) {
-        return Integer.compare(Math.toIntExact(this.hits), Math.toIntExact(viewStats.hits));
-    }
+//    @Override
+//    public int compareTo(ViewStats viewStats) {
+//        return Integer.compare(Math.toIntExact(this.hits), Math.toIntExact(viewStats.hits));
+//    }
 
     @Override
     public boolean equals(Object o) {

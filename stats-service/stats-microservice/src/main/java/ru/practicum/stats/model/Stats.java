@@ -12,8 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@ToString
-@FieldDefaults(level = AccessLevel.PRIVATE)
+
 @Entity
 @Table(name = "hits")
 public class Stats {
@@ -21,16 +20,13 @@ public class Stats {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "app")
     String app;
 
-    @Column(name = "uri")
     String uri;
 
-    @Column(name = "ip")
     String ip;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+3")
-    @Column(name = "timestamp")
     LocalDateTime timestamp;
 }
+

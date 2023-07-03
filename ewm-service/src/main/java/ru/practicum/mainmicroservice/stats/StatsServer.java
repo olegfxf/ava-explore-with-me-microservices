@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+import ru.practicum.client.Client;
+
 @Component
 public class StatsServer {
 
@@ -40,6 +42,7 @@ public class StatsServer {
                         "\"uri\":\"" + uri + "\"," +
                         "\"ip\":\"" + ip + "\"," +
                         "\"timestamp\":\"" + dateTime + "\"}");
+        System.out.println(httpResponse);
     }
 
 

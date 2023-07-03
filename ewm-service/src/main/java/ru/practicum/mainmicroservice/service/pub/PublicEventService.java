@@ -57,10 +57,13 @@ public class PublicEventService {
                                             String rangeEnd, Boolean onlyAvailable, String sort, Integer from,
                                             Integer size, HttpServletRequest request)
             throws IOException, InterruptedException {
-        statsServer.saveHit(request);
 
-        if (categories.size() < 1 || (text != null && text.length() < 2))
+
+        if (categories.size() < 1 || (text != null && text.length() < 2)) {
+            System.out.println("ZZZ ");
+            statsServer.saveHit(request);
             throw new BadRequestException("Текст запроса должен содержать сообщение длинойбольше двух");
+        }
 
         Pageable pageable = PageRequest.of(from / size, size);
         LocalDateTime start = rangeStart == null ? null : LocalDateTime.parse(rangeStart, dateTimeFormatter);
@@ -91,15 +94,15 @@ public class PublicEventService {
         return events
                 .stream()
                 .peek(e -> incrementViews(e.getId()))
-//                .peek(e -> {
-//                    try {
-//                        statsServer.saveHit(request);
-//                    } catch (IOException ex) {
-//                        throw new RuntimeException(ex);
-//                    } catch (InterruptedException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                })
+                .peek(e -> {
+                    try {
+                        statsServer.saveHit(request);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                })
 
                 .map(EventMapper::toEventShortDto)
                 .collect(Collectors.toList());

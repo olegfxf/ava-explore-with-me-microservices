@@ -60,7 +60,7 @@ public class PublicEventService {
 
 
         if (categories.size() < 1 || (text != null && text.length() < 2)) {
-            System.out.println("ZZZ ");
+            System.out.println("ZZZ " + request);
             statsServer.saveHit(request);
             throw new BadRequestException("Текст запроса должен содержать сообщение длинойбольше двух");
         }

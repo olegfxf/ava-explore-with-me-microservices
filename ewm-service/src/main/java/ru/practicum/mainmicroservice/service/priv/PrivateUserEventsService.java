@@ -33,7 +33,6 @@ public class PrivateUserEventsService {
     final LocationRepository locationRepository;
     final RequestRepository requestRepository;
 
-    //@Autowired
     public PrivateUserEventsService(
             EventRepository eventRepository,
             UserRepository userRepository,

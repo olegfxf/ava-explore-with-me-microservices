@@ -16,7 +16,6 @@ import java.util.List;
 public class AdminEventController {
     private final AdminEventService adminEventService;
 
-    //@Autowired
     public AdminEventController(AdminEventService adminEventService) {
         this.adminEventService = adminEventService;
     }

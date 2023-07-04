@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/admin/compilations")
 public class AdminCompilationController {
-    //@Autowired
+
     public AdminCompilationController(AdminCompilationService adminCompilationService) {
         this.adminCompilationService = adminCompilationService;
     }

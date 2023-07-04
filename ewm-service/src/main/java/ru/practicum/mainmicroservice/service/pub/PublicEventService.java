@@ -41,7 +41,6 @@ public class PublicEventService {
     final StatsServer statsServer;
     final ConfigClient configClient;
 
-    //@Autowired
     public PublicEventService(EventRepository eventRepository,
                               StatsServer statsServer,
                               ConfigClient configClient,

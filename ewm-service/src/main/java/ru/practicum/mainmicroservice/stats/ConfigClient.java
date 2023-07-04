@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 public class ConfigClient {
     private final String statServerUrl;
 
-    //@Autowired
     public ConfigClient(@Value("${stats-server.url}") String statServerUrl) {
         this.statServerUrl = statServerUrl;
     }

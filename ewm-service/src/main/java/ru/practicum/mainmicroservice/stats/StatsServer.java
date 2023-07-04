@@ -25,7 +25,6 @@ public class StatsServer {
 
     ConfigClient configClient;
 
-    //@Autowired
     public StatsServer(ConfigClient configClient) {
         this.configClient = configClient;
     }

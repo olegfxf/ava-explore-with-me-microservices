@@ -19,7 +19,6 @@ import javax.validation.Valid;
 public class AdminCategoryController {
     private final AdminCategoryService adminCategoryService;
 
-    //@Autowired
     public AdminCategoryController(AdminCategoryService adminCategoryService) {
         this.adminCategoryService = adminCategoryService;
     }

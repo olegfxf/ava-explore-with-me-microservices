@@ -23,7 +23,6 @@ public class HitServiceImpl implements HitService {
     private final HitRepository hitRepository;
     static Integer cnt = 0;
 
-    //@Autowired
     public HitServiceImpl(HitRepository hitRepository) {
         this.hitRepository = hitRepository;
     }

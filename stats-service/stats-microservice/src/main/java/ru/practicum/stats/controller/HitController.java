@@ -16,7 +16,6 @@ import java.util.Optional;
 public class HitController {
     private final HitServiceImpl hitService;
 
-    //@Autowired
     public HitController(HitServiceImpl hitService) {
         this.hitService = hitService;
     }

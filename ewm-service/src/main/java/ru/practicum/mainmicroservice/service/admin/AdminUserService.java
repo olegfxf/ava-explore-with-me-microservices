@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class AdminUserService {
     private final UserRepository userRepository;
 
-    //@Autowired
     public AdminUserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

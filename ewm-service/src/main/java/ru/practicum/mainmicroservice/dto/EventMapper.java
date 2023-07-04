@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter;
 public class EventMapper {
     static CategoryRepository categoryRepository;
 
-    //@Autowired
     public EventMapper(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }

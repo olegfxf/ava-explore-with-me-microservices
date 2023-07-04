@@ -19,7 +19,6 @@ public class PublicEventController {
 
     private final PublicEventService publicEventService;
 
-    //@Autowired
     public PublicEventController(PublicEventService publicEventService) {
         this.publicEventService = publicEventService;
     }

@@ -34,7 +34,6 @@ public class AdminEventService {
     final LocationRepository locationRepository;
     final RequestRepository requestRepository;
 
-    //@Autowired
     public AdminEventService(EventRepository eventRepository,
                              LocationRepository locationRepository,
                              RequestRepository requestRepository) {

@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class PublicCompilationService {
     private final CompilationRepository compilationRepository;
 
-    //@Autowired
     public PublicCompilationService(CompilationRepository compilationRepository) {
         this.compilationRepository = compilationRepository;
     }

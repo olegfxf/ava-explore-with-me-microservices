@@ -15,7 +15,6 @@ public class PublicCategoryController {
 
     private final PublicCategoryService publicCategoryService;
 
-    //@Autowired
     public PublicCategoryController(PublicCategoryService publicCategoryService) {
         this.publicCategoryService = publicCategoryService;
     }

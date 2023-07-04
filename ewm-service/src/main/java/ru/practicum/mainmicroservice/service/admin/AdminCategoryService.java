@@ -22,7 +22,6 @@ public class AdminCategoryService {
     final CategoryRepository categoryRepository;
     final EventRepository eventRepository;
 
-    //@Autowired
     public AdminCategoryService(CategoryRepository categoryRepository,
                                 EventRepository eventRepository) {
         this.categoryRepository = categoryRepository;

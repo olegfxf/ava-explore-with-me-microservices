@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 public class PublicCategoryService {
     private CategoryRepository categoryRepository;
 
-    //@Autowired
     public PublicCategoryService(
             CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

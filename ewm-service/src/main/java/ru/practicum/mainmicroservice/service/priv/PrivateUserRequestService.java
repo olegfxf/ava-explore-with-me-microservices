@@ -28,7 +28,6 @@ public class PrivateUserRequestService {
     UserRepository userRepository;
     final EventRepository eventRepository;
 
-    //@Autowired
     public PrivateUserRequestService(RequestRepository requestRepository,
                                      UserRepository userRepository,
                                      EventRepository eventRepository) {

@@ -16,7 +16,6 @@ public class PublicCompilationController {
 
     private final PublicCompilationService publicCompilationService;
 
-    //@Autowired
     public PublicCompilationController(PublicCompilationService publicCompilationService) {
         this.publicCompilationService = publicCompilationService;
     }

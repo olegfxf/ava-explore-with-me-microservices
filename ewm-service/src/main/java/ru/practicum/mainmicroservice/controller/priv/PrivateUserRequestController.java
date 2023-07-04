@@ -15,7 +15,6 @@ import java.util.List;
 public class PrivateUserRequestController {
     private final PrivateUserRequestService privateUserRequestService;
 
-    //@Autowired
     public PrivateUserRequestController(PrivateUserRequestService privateUserRequestService) {
         this.privateUserRequestService = privateUserRequestService;
     }

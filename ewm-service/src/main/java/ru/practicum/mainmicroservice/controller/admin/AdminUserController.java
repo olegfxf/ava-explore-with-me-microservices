@@ -17,7 +17,6 @@ import java.util.List;
 public class AdminUserController {
     private final AdminUserService adminUserService;
 
-    //@Autowired
     public AdminUserController(AdminUserService adminUserService) {
         this.adminUserService = adminUserService;
     }

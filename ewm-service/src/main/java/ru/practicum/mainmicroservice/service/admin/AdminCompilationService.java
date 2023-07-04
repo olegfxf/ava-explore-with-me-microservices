@@ -24,7 +24,6 @@ public class AdminCompilationService {
     final CompilationRepository compilationRepository;
     final EventRepository eventRepository;
 
-    //@Autowired
     public AdminCompilationService(CompilationRepository compilationRepository, EventRepository eventRepository) {
         this.compilationRepository = compilationRepository;
         this.eventRepository = eventRepository;

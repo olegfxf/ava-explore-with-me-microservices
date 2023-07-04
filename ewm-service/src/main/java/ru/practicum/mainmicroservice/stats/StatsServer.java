@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import ru.practicum.client.Client;
+import ru.practicum.client.HttpClient;
 
 @Component
 public class StatsServer {

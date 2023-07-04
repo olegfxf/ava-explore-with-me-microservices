@@ -116,7 +116,7 @@ public class HitServiceImpl implements HitService {
         Stats stats = new Stats();
         stats.setIp("127.0.0.0");
         stats.setTimestamp(LocalDateTime.now());
-        stats.setApp("app");
+        stats.setApp("ewm-main-service");
         stats.setUri("/events");
         System.out.println("az = " + az);
         System.out.println(" ZZZ0" + hitRepository.findAll().size());

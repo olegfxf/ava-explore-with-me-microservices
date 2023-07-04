@@ -1,6 +1,5 @@
 package ru.practicum.mainmicroservice.stats;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class ConfigClient {
     private final String statServerUrl;
 
-    @Autowired
+    //@Autowired
     public ConfigClient(@Value("${stats-server.url}") String statServerUrl) {
         this.statServerUrl = statServerUrl;
     }

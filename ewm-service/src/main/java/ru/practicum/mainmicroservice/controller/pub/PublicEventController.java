@@ -1,7 +1,6 @@
 package ru.practicum.mainmicroservice.controller.pub;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.EventFullDto;
@@ -20,7 +19,7 @@ public class PublicEventController {
 
     private final PublicEventService publicEventService;
 
-    @Autowired
+    //@Autowired
     public PublicEventController(PublicEventService publicEventService) {
         this.publicEventService = publicEventService;
     }

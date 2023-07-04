@@ -1,7 +1,6 @@
 package ru.practicum.stats.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.practicum.dto.HitDto;
 import ru.practicum.stats.HitRepository;
@@ -24,7 +23,7 @@ public class HitServiceImpl implements HitService {
     private final HitRepository hitRepository;
     static Integer cnt = 0;
 
-    @Autowired
+    //@Autowired
     public HitServiceImpl(HitRepository hitRepository) {
         this.hitRepository = hitRepository;
     }

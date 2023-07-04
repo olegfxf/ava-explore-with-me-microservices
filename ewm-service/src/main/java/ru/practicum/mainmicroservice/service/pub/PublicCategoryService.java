@@ -1,7 +1,6 @@
 package ru.practicum.mainmicroservice.service.pub;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 public class PublicCategoryService {
     private CategoryRepository categoryRepository;
 
-    @Autowired
+    //@Autowired
     public PublicCategoryService(
             CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

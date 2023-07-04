@@ -1,6 +1,5 @@
 package ru.practicum.mainmicroservice.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.practicum.mainmicroservice.model.Category;
 import ru.practicum.mainmicroservice.model.Event;
@@ -14,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class EventMapper {
     static CategoryRepository categoryRepository;
 
-    @Autowired
+    //@Autowired
     public EventMapper(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }

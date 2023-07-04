@@ -3,7 +3,6 @@ package ru.practicum.mainmicroservice.service.priv;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class PrivateUserEventsService {
     final LocationRepository locationRepository;
     final RequestRepository requestRepository;
 
-    @Autowired
+    //@Autowired
     public PrivateUserEventsService(
             EventRepository eventRepository,
             UserRepository userRepository,

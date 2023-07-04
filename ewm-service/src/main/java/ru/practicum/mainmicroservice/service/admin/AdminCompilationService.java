@@ -3,7 +3,6 @@ package ru.practicum.mainmicroservice.service.admin;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.mainmicroservice.dto.*;
@@ -25,7 +24,7 @@ public class AdminCompilationService {
     final CompilationRepository compilationRepository;
     final EventRepository eventRepository;
 
-    @Autowired
+    //@Autowired
     public AdminCompilationService(CompilationRepository compilationRepository, EventRepository eventRepository) {
         this.compilationRepository = compilationRepository;
         this.eventRepository = eventRepository;

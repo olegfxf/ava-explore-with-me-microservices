@@ -1,7 +1,6 @@
 package ru.practicum.mainmicroservice.controller.priv;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.ParticipationRequestDto;
@@ -16,7 +15,7 @@ import java.util.List;
 public class PrivateUserRequestController {
     private final PrivateUserRequestService privateUserRequestService;
 
-    @Autowired
+    //@Autowired
     public PrivateUserRequestController(PrivateUserRequestService privateUserRequestService) {
         this.privateUserRequestService = privateUserRequestService;
     }

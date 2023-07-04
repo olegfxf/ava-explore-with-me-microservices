@@ -1,7 +1,6 @@
 package ru.practicum.stats.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.dto.HitDto;
@@ -17,7 +16,7 @@ import java.util.Optional;
 public class HitController {
     private final HitServiceImpl hitService;
 
-    @Autowired
+    //@Autowired
     public HitController(HitServiceImpl hitService) {
         this.hitService = hitService;
     }

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class HitServiceImpl implements HitService {
     private final HitRepository hitRepository;
-    static Integer cnt = 10;
+    static Integer cnt = 0;
 
     @Autowired
     public HitServiceImpl(HitRepository hitRepository) {

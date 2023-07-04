@@ -45,13 +45,13 @@ public class AdminCompilationService {
     }
 
     @Transactional
-    public CompilationDto deleteAdminCompilation(Long id) {
+    public void deleteAdminCompilation(Long id) {
         log.debug(String.valueOf(LogMessages.REMOVE), "ПОДБОРКУ СОБЫТИЙ");
         Compilation compilation = compilationRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Подборка не найдена"));
         compilationRepository.deleteById(id);
         log.debug(String.valueOf(LogMessages.REMOVE), id + " - ПОДБОРКА СОБЫТИЙ");
-        return CompilationMapper.toCompilationDto(compilation, null);
+        // return CompilationMapper.toCompilationDto(compilation, null);
 
     }
 

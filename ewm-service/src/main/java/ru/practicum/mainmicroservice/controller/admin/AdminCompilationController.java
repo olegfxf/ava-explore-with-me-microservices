@@ -32,9 +32,9 @@ public class AdminCompilationController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public CompilationDto deleteAdminCompilation(@PathVariable Long id) {
+    public void deleteAdminCompilation(@PathVariable Long id) {
         log.debug(String.valueOf(LogMessages.TRY_REMOVE_OBJECT), "ПОДБОРКИ СОБЫТИЙ");
-        return adminCompilationService.deleteAdminCompilation(id);
+        adminCompilationService.deleteAdminCompilation(id);
     }
 
     @PatchMapping("/{id}")

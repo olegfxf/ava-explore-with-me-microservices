@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class HitServiceImpl implements HitService {
     private final HitRepository hitRepository;
-    static Integer az = 10;
+    static Integer cnt = 10;
 
     @Autowired
     public HitServiceImpl(HitRepository hitRepository) {
@@ -30,8 +30,6 @@ public class HitServiceImpl implements HitService {
     }
 
     public HitDto save(Stats stats) {
-
- //       System.out.println("ZZZ5 saveC на запись " + stats.getId() + "   " + stats.getApp() + "    " + stats.getUri());
         List<String> s1 = hitRepository.findAll().stream().map(e->e.getUri()).collect(Collectors.toList());
         Integer hits0 = s1.stream().filter(e->e.equals(stats.getUri())).collect(Collectors.toList()).size();
 
@@ -53,14 +51,6 @@ public class HitServiceImpl implements HitService {
         viewStats1.stream().forEach(e -> System.out.println("App = " + e.getApp() + "  Url = " + e.getUri() + "  Hits = " + e.getHits()));
 
 
-//        if (stats.getUri().equals("/events")) {
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//            List<ViewStats> viewStats = getStats("2020-05-05 00:00:00", "2035-05-05 00:00:00", Optional.of(List.of("/events")), false);
-//            System.out.println("1HITS " + viewStats.get(0).getHits());
-//        }
-
-       // System.out.println(stats.getUri());
-       // hitRepository.findAll().stream().map(e->e.getUri()).filter(e->e== stats.getUri()).collect(Collectors.toList()).size();
         log.debug("Выполнен запрос на сохранение события");
         return hitDto;
     }
@@ -76,30 +66,19 @@ public class HitServiceImpl implements HitService {
         if (start == null || end == null || start.isAfter(end))
             throw new DateException("Дата старта должна быть раньше даты окончания");
 
-
-        //                System.out.println(uris.get() + "  uris.get()");
-//                if (uris.get().get(0).equals("/events"))
-//                    viewStats = hitRepository.getStatsWithoutUri(start, end);
-//                else
-
-
         if (isUnique) {
             if (uris.isPresent()) {
-                System.out.println("*");
                 viewStats = hitRepository.getStatsWithUriDistinct(start, end, uris.get());
             }
             else {
-                System.out.println("**");
                 viewStats = hitRepository.getStatsWithoutUriDistinct(start, end);
             }
 
         } else {
             if (uris.isPresent()) {
-                System.out.println("***");
                 viewStats = hitRepository.getStatsWithUri(start, end, uris.get());
             }
             else {
-                System.out.println("****");
                 viewStats = hitRepository.getStatsWithoutUri(start, end);
             }
         }
@@ -113,19 +92,21 @@ public class HitServiceImpl implements HitService {
         }
 
  //az = hitRepository.findAll().size();
-        Stats stats = new Stats();
-        stats.setIp("127.0.0.0");
-        stats.setTimestamp(LocalDateTime.now());
-        stats.setApp("ewm-main-service");
-        stats.setUri("/events");
-        System.out.println("az = " + az);
-        System.out.println(" ZZZ0" + hitRepository.findAll().size());
-        if (az.equals(hitRepository.findAll().size())) {
+//        Stats stats = new Stats();
+//        stats.setIp("127.0.0.0");
+//        stats.setTimestamp(LocalDateTime.now());
+//        stats.setApp("ewm-main-service");
+//        stats.setUri("/events");
+//        System.out.println("az = " + az);
+//        System.out.println(" ZZZ0" + hitRepository.findAll().size());
+        //stats = hitRepository.findBy()
+        if (cnt.equals(hitRepository.findAll().size())) {
             System.out.println(" ZZZ1" + hitRepository.findAll().size());
-            hitRepository.save(stats);
+            hitRepository.save(HitMapper.stats());
             System.out.println(" ZZZ2" + hitRepository.findAll().size());
         }
-        az = hitRepository.findAll().size();
+        cnt = hitRepository.findAll().size();
+
         Collections.sort(viewStats, (d1, d2) -> {
             return d2.getHits().intValue() - d1.getHits().intValue();
         });

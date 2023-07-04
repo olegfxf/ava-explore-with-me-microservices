@@ -2,7 +2,6 @@ package ru.practicum.stats.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

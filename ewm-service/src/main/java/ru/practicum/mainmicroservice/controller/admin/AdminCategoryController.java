@@ -32,9 +32,9 @@ public class AdminCategoryController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Category deleteCategory(@PathVariable Long id) {
+    public void deleteCategory(@PathVariable Long id) {
         log.debug(String.valueOf(LogMessages.TRY_REMOVE_OBJECT), "КАТЕГОРИЯ");
-        return adminCategoryService.deleteCategory(id);
+        adminCategoryService.deleteCategory(id);
     }
 
     @PatchMapping("/{id}")

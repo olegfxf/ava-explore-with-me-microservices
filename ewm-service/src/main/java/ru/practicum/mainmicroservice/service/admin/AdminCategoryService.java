@@ -36,7 +36,7 @@ public class AdminCategoryService {
     }
 
     @Transactional
-    public Category deleteCategory(Long id) {
+    public void deleteCategory(Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Категория с id = " + id + " не найдена"));
         if (eventRepository.findFirstByCategoryId(id) != null)
@@ -44,7 +44,6 @@ public class AdminCategoryService {
 
         log.debug(String.valueOf(LogMessages.REMOVE), "КАТЕГОРИЯ");
         categoryRepository.deleteById(id);
-        return category;
     }
 
     @Transactional

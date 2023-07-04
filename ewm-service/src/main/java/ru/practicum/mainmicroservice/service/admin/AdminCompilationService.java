@@ -51,8 +51,6 @@ public class AdminCompilationService {
                 .orElseThrow(() -> new NotFoundException("Подборка не найдена"));
         compilationRepository.deleteById(id);
         log.debug(String.valueOf(LogMessages.REMOVE), id + " - ПОДБОРКА СОБЫТИЙ");
-        // return CompilationMapper.toCompilationDto(compilation, null);
-
     }
 
     @Transactional

@@ -1,6 +1,7 @@
 package ru.practicum.mainmicroservice.controller.priv;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.*;
@@ -17,7 +18,7 @@ import java.util.List;
 public class PrivateUserEventsController {
     private final PrivateUserEventsService privateUserEventsService;
 
-    //@Autowired
+    @Autowired
     public PrivateUserEventsController(PrivateUserEventsService privateUserEventsService) {
         this.privateUserEventsService = privateUserEventsService;
     }

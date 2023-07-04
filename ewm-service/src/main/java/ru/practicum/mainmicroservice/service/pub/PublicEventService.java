@@ -60,8 +60,6 @@ public class PublicEventService {
 
 
         if (categories.size() < 1 || (text != null && text.length() < 2)) {
-            System.out.println("ZZZZ " + request);
-            statsServer.saveHit(request);
             throw new BadRequestException("Текст запроса должен содержать сообщение длинойбольше двух");
         }
 
@@ -89,7 +87,6 @@ public class PublicEventService {
             }
         }
 
-      //  statsServer.saveHit(request);
 
         return events
                 .stream()
@@ -127,7 +124,6 @@ public class PublicEventService {
 
         log.debug(String.valueOf(LogMessages.GET), "СОБЫТИЕ");
         return EventMapper.toEventFullDto(event);
-
     }
 
 

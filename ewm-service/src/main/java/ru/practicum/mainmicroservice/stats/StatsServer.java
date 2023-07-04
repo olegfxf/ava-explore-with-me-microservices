@@ -20,7 +20,6 @@ import ru.practicum.client.HttpClient;
 @Component
 public class StatsServer {
 
-    //static HttpClient httpClient = new HttpClient();
     static HttpClient httpClient = new HttpClient();
 
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -57,7 +56,6 @@ public class StatsServer {
         HttpResponse<String> httpResponse1 = Client.http(start, end, host, uris + "&unique=true"); //= "&unique=true")
         String jsonString = httpResponse1.body();
         ObjectMapper mapper = new ObjectMapper();
-
        List<Map<String, Object>> map = mapper.readValue(jsonString, new TypeReference<List<Map<String, Object>>>() {});
 
         String jsonString2 = map.get(0).toString();

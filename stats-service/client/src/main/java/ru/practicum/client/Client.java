@@ -13,7 +13,6 @@ public class Client {
     public static HttpResponse<String> http(String start, String end, String host1, String uris)
             throws IOException, InterruptedException {
 
-
         String host = host1.split(":")[1].substring(2);//"localhost";
         String port = host1.split(":")[2]; //"9090";
         String uris1 = "/" + uris;

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.practicum.client.Client;
+import ru.practicum.client.HttpClient;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -13,9 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
-
-import ru.practicum.client.Client;
-import ru.practicum.client.HttpClient;
 
 @Component
 public class StatsServer {
@@ -45,8 +44,6 @@ public class StatsServer {
         System.out.println(httpResponse);
     }
 
-
-
     public Integer requeryViews(String uris) throws IOException, InterruptedException {
         String start = LocalDateTime.now().minusYears(1).format(dateTimeFormatter);
         String end = LocalDateTime.now().plusYears(1).format(dateTimeFormatter);
@@ -56,7 +53,8 @@ public class StatsServer {
         HttpResponse<String> httpResponse1 = Client.http(start, end, host, uris + "&unique=true"); //= "&unique=true")
         String jsonString = httpResponse1.body();
         ObjectMapper mapper = new ObjectMapper();
-       List<Map<String, Object>> map = mapper.readValue(jsonString, new TypeReference<List<Map<String, Object>>>() {});
+        List<Map<String, Object>> map = mapper.readValue(jsonString, new TypeReference<List<Map<String, Object>>>() {
+        });
 
         String jsonString2 = map.get(0).toString();
         int index = jsonString2.indexOf("hits=");

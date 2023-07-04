@@ -40,7 +40,6 @@ public class StatsServer {
                         "\"uri\":\"" + uri + "\"," +
                         "\"ip\":\"" + ip + "\"," +
                         "\"timestamp\":\"" + dateTime + "\"}");
-        System.out.println(httpResponse);
     }
 
     public Integer requeryViews(String uris) throws IOException, InterruptedException {

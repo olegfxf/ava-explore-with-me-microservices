@@ -25,8 +25,6 @@ public class HitController {
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
     public HitDto save(@RequestBody Stats stats) {
-        System.out.println("ZZZ4 saveC " + stats);
-
         log.debug("Поступил запрос на создание события {}", stats);
         return hitService.save(stats);
     }

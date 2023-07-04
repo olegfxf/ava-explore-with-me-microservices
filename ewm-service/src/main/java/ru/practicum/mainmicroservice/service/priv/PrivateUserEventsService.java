@@ -16,8 +16,6 @@ import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.model.*;
 import ru.practicum.mainmicroservice.repository.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -177,20 +175,17 @@ public class PrivateUserEventsService {
 
         List<ParticipationRequest> requestsEvent = requestRepository.findAllByEventId(eventId);
 
-        // вы не владелец события и не имеете право изменять статус заявок
+
         if (!event.getInitiator().getId().equals(userId)) {
             throw new NotFoundException("Вы не владелец события и не имеете право изменять статус заявок");
         }
 
-        // Если для события лимит заявок равен 0 или отключена пре-модерация заявок,
-        // то подтверждение заявок не требуется
+
         if (!event.getRequestModeration() || event.getParticipantLimit() == 0) {
             throw new BadRequestException("Подтверждение не требуется");
         }
 
 
-        // Нельзя подтвердить заявку, если уже достигнут лимит по заявкам на данное
-        // событие (Ожидается код ошибки 409)
         if (event.getParticipantLimit() <= requestRepository
                 .countByEventAndStatus(event, Status.CONFIRMED)) {
             throw new ConflictException("Достигнут лимит запросов на участие");

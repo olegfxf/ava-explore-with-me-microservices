@@ -4,10 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.practicum.dto.HitDto;
-import ru.practicum.stats.exception.DateException;
 import ru.practicum.stats.HitRepository;
 import ru.practicum.stats.dto.HitMapper;
 import ru.practicum.stats.dto.ViewStats;
+import ru.practicum.stats.exception.DateException;
 import ru.practicum.stats.model.Stats;
 
 import java.time.LocalDateTime;
@@ -32,8 +32,8 @@ public class HitServiceImpl implements HitService {
     public HitDto save(Stats stats) {
         HitDto hitDto = HitMapper.toHitDto(hitRepository.save(stats));
 
-        List<String> uris = hitRepository.findAll().stream().map(e->e.getUri()).collect(Collectors.toList());
-        Integer hits = uris.stream().filter(e->e.equals(stats.getUri())).collect(Collectors.toList()).size();
+        List<String> uris = hitRepository.findAll().stream().map(e -> e.getUri()).collect(Collectors.toList());
+        Integer hits = uris.stream().filter(e -> e.equals(stats.getUri())).collect(Collectors.toList()).size();
         hitDto.setHit(hits);
 
         log.debug("Выполнен запрос на сохранение события");
@@ -54,16 +54,14 @@ public class HitServiceImpl implements HitService {
         if (isUnique) {
             if (uris.isPresent()) {
                 viewStats = hitRepository.getStatsWithUriDistinct(start, end, uris.get());
-            }
-            else {
+            } else {
                 viewStats = hitRepository.getStatsWithoutUriDistinct(start, end);
             }
 
         } else {
             if (uris.isPresent()) {
                 viewStats = hitRepository.getStatsWithUri(start, end, uris.get());
-            }
-            else {
+            } else {
                 viewStats = hitRepository.getStatsWithoutUri(start, end);
             }
         }

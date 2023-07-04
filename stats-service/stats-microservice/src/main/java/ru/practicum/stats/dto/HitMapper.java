@@ -20,8 +20,8 @@ public class HitMapper {
                 .build();
     }
 
-    public static Stats stats(){
-        return  Stats.builder()
+    public static Stats stats() {
+        return Stats.builder()
                 .app("ewm-main-service")
                 .ip("127.0.0.0")
                 .timestamp(LocalDateTime.now())

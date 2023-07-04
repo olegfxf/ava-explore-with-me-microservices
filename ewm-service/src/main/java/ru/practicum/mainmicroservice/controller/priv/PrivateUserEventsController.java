@@ -8,9 +8,7 @@ import ru.practicum.mainmicroservice.dto.*;
 import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.service.priv.PrivateUserEventsService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 

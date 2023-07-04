@@ -9,6 +9,7 @@ import ru.practicum.mainmicroservice.model.Status;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class ParticipationRequestDto {
     Long id;
 

@@ -18,6 +18,7 @@ import ru.practicum.mainmicroservice.repository.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -150,7 +151,6 @@ public class PrivateUserEventsService {
 
 
     public List<ParticipationRequestDto> getByIdUsersEvensRequests(Long eventId, Long userId) {
-        List<ParticipationRequestDto> participationRequestDtosEmpty = new ArrayList<>();
         List<ParticipationRequestDto> participationRequestDtos = requestRepository.findAllByEventIdAndEventInitiatorId(eventId, userId)
                 .stream()
                 .map(e -> ParticipationRequestMapper.toParticipationRequestDto(e))
@@ -158,7 +158,7 @@ public class PrivateUserEventsService {
 
         log.debug(String.valueOf(LogMessages.GET), "СОБЫТИЕ");
         if (participationRequestDtos.isEmpty())
-            return participationRequestDtosEmpty;
+            return Arrays.asList(new ParticipationRequestDto());
         else
             return participationRequestDtos;
     }

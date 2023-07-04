@@ -21,6 +21,9 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class AdminUserService {
+    public static final int MAX_USERNAME_LENGTH = 63;
+    public static final int MAX_DOMAIN_NAME_LENGTH = 63;
+    public static final int MAX_EMAIL_LENGTH = 254;
     private final UserRepository userRepository;
 
     public AdminUserService(UserRepository userRepository) {
@@ -30,10 +33,11 @@ public class AdminUserService {
     @Transactional
     public UserDto saveUser(NewUserRequest newUserRequest) {
         String[] emailPart = newUserRequest.getEmail().split("@");
-        if (emailPart[0].length() > 63)
+        if (emailPart[0].length() > MAX_USERNAME_LENGTH)
             throw new BadRequestException("Длина имени пользователя больше 64");
         String[] domainPart = emailPart[1].split("\\.");
-        if (emailPart[1].length() > 63 && newUserRequest.getEmail().length() != 254)
+        if (emailPart[1].length() > MAX_DOMAIN_NAME_LENGTH
+                && newUserRequest.getEmail().length() != MAX_EMAIL_LENGTH)
             throw new BadRequestException("Длина доменного имени больше 63");
 
         log.debug(String.valueOf(LogMessages.ADD), "ПОЛЬЗОВАТЕЛЬ");

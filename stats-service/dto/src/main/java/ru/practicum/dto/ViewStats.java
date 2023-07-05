@@ -1,0 +1,32 @@
+package ru.practicum.dto;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import java.util.Objects;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+public class ViewStats {
+    String app;
+    String uri;
+    Long hits;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ViewStats viewStats = (ViewStats) o;
+        return Objects.equals(app, viewStats.app) && Objects.equals(uri, viewStats.uri) && Objects.equals(hits, viewStats.hits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(app, uri, hits);
+    }
+
+}

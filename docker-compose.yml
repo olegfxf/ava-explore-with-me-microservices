@@ -1,12 +1,14 @@
 version: '3.3'
 services:
   stats-server:
+    build: ./stats-service/stats-microservice
     image: stats-microservice
     container_name: stats-container
     depends_on:
       - stats-db
     ports:
       - "9090:9090"
+
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats-db
 
@@ -22,14 +24,17 @@ services:
 
 
   ewm-service:
-    build: ewm-service
+    build: ./ewm-service
     image: ewm-service
     container_name: ewm-service
     depends_on:
       - ewm-db
-      - stats-server
+    ports:
+      - "8080:8080"
+#      - "8081:8081"
     environment:
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm-db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm-db
+      - STATS_SERVER_URL=http://stats-server:9090
 
 
   ewm-db:
@@ -38,9 +43,9 @@ services:
     container_name:
       ewm-db-container
     ports:
-    - "6541:5432"
+      - "6541:5432"
     environment:
-    - POSTGRES_DB=ewm-db
-    - POSTGRES_USER=root
-    - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ewm-db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
 

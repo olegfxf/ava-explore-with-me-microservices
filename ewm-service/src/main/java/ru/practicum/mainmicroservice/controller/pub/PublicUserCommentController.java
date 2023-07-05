@@ -1,9 +1,7 @@
 package ru.practicum.mainmicroservice.controller.pub;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CommentDto;
 import ru.practicum.mainmicroservice.service.pub.PublicUserCommentService;
 
@@ -11,6 +9,8 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Slf4j
+@RequestMapping("/events/{eventId}/comments")
+@RestController
 public class PublicUserCommentController {
     PublicUserCommentService publicUserCommentService;
 

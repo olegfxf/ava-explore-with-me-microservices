@@ -4,6 +4,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.practicum.mainmicroservice.dto.CommentDto;
 import ru.practicum.mainmicroservice.dto.CommentMapper;
+import ru.practicum.mainmicroservice.exception.BadRequestException;
 import ru.practicum.mainmicroservice.exception.NotFoundException;
 import ru.practicum.mainmicroservice.model.Comment;
 import ru.practicum.mainmicroservice.model.Event;
@@ -49,21 +50,19 @@ public class PrivateUserCommentService {
                 .map(CommentMapper::toCommentDto)
                 .collect(Collectors.toList());
     }
-//
-//
-//
-//
-//    public CommentDto updateComment(Long commentId, Long userId, CommentDto commentDto) {
-//        Comment comment = commentRepository.findByIdAndUserId(commentId, userId)
-//                .orElseThrow(() -> new BadRequestException("Толка автор может изменинть коментарий"));
-//        comment.setText(commentDto.getText());
-//        return CommentMapper.toCommentDto(commentRepository.save(comment));
-//    }
-//
-//
-//    public void deleteComment(Long commentId, Long userId) {
-//        Comment comment = commentRepository.findByIdAndUserId(commentId, userId)
-//                .orElseThrow(() -> new BadRequestException("Толка автор может изменинть коментарий"));
-//        commentRepository.delete(comment);
-//    }
+
+
+    public CommentDto updateComment(Long commentId, Long userId, CommentDto commentDto) {
+        Comment comment = commentRepository.findByIdAndUserId(commentId, userId)
+                .orElseThrow(() -> new BadRequestException("Толка автор может изменинть коментарий"));
+        comment.setText(commentDto.getText());
+        return CommentMapper.toCommentDto(commentRepository.save(comment));
+    }
+
+
+    public void deleteComment(Long commentId, Long userId) {
+        Comment comment = commentRepository.findByIdAndUserId(commentId, userId)
+                .orElseThrow(() -> new BadRequestException("Толка автор может изменинть коментарий"));
+        commentRepository.delete(comment);
+    }
 }

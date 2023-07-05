@@ -38,21 +38,21 @@ public class PrivateUserCommentController {
         return privateUserCommentService.getAllCommentsByUser(userId, from, size);
     }
 
-//
-//    @PatchMapping("/{commentId}")
-//    public CommentDto updateComment(@Positive @PathVariable Long commentId,
-//                                    @Positive @PathVariable Long userId,
-//                                    @Valid @RequestBody CommentDto commentDto) {
-//        log.info("update comment {}", commentId);
-//        return privateUserCommentService.updateComment(commentId, userId, commentDto);
-//    }
-//
-//    @DeleteMapping("/{commentId}")
-//    public void deleteComment(@Positive @PathVariable Long userId,
-//                              @Positive @PathVariable Long commentId) {
-//        log.info("delete comment {}", commentId);
-//        privateUserCommentService.deleteComment(commentId, userId);
-//    }
+
+    @PatchMapping("/{commentId}")
+    public CommentDto updateComment(@Positive @PathVariable Long commentId,
+                                    @Positive @PathVariable Long userId,
+                                    @Valid @RequestBody CommentDto commentDto) {
+        log.info("update comment {}", commentId);
+        return privateUserCommentService.updateComment(commentId, userId, commentDto);
+    }
+
+    @DeleteMapping("/{commentId}")
+    public void deleteComment(@Positive @PathVariable Long userId,
+                              @Positive @PathVariable Long commentId) {
+        log.info("delete comment {}", commentId);
+        privateUserCommentService.deleteComment(commentId, userId);
+    }
 
 
 }

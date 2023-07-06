@@ -76,4 +76,5 @@ public class PrivateUserEventsController {
         return privateUserEventsService.updateUsersEventsRequests(userId, eventId, eventRequestStatusUpdateRequest);
     }
 
+
 }

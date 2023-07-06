@@ -54,7 +54,7 @@ public class PrivateUserCommentService {
 
     public CommentDto updateComment(Long commentId, Long userId, CommentDto commentDto) {
         Comment comment = commentRepository.findByIdAndUserId(commentId, userId)
-                .orElseThrow(() -> new BadRequestException("Толка автор может изменинть коментарий"));
+                .orElseThrow(() -> new BadRequestException("Только автор может изменинть комментарий"));
         comment.setText(commentDto.getText());
         return CommentMapper.toCommentDto(commentRepository.save(comment));
     }
@@ -62,7 +62,7 @@ public class PrivateUserCommentService {
 
     public void deleteComment(Long commentId, Long userId) {
         Comment comment = commentRepository.findByIdAndUserId(commentId, userId)
-                .orElseThrow(() -> new BadRequestException("Толка автор может изменинть коментарий"));
+                .orElseThrow(() -> new BadRequestException("Только автор может удалить комментарий"));
         commentRepository.delete(comment);
     }
 }

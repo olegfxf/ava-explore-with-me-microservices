@@ -1,6 +1,7 @@
 package ru.practicum.mainmicroservice.controller.priv;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CommentDto;
 import ru.practicum.mainmicroservice.service.priv.PrivateUserCommentService;
@@ -22,6 +23,7 @@ public class PrivateUserCommentController {
     }
 
     @PostMapping("/{eventId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public CommentDto saveComment(@Positive @PathVariable Long userId,
                                   @Positive @PathVariable Long eventId,
                                   @Valid @RequestBody CommentDto commentDto) {
@@ -30,7 +32,8 @@ public class PrivateUserCommentController {
     }
 
 
-    @GetMapping
+    @GetMapping("/events/{eventId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public List<CommentDto> getAllCommentsByUser(@Positive @PathVariable Long userId,
                                                  @RequestParam(defaultValue = "0") int from,
                                                  @RequestParam(defaultValue = "10") int size) {
@@ -40,6 +43,7 @@ public class PrivateUserCommentController {
 
 
     @PatchMapping("/{commentId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public CommentDto updateComment(@Positive @PathVariable Long commentId,
                                     @Positive @PathVariable Long userId,
                                     @Valid @RequestBody CommentDto commentDto) {
@@ -48,6 +52,7 @@ public class PrivateUserCommentController {
     }
 
     @DeleteMapping("/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@Positive @PathVariable Long userId,
                               @Positive @PathVariable Long commentId) {
         log.info("delete comment {}", commentId);

@@ -118,7 +118,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"annotation\": \"Вести с водоемов.\",\n    \"category\": 1,\n    \"confirmedRequests\": 0,\n    \"description\": \"Для любителей рыбалки и охоты.\",\n    \"eventDate\": \"2023-07-15 18:38:14\",\n    \"location\": {\n        \"lat\": 34.9003,\n        \"lon\": 149.9797\n    },\n    \"paid\": true,\n    \"participantLimit\": 809,\n    \"requestModeration\": true,\n    \"title\": \"Eos praesentium laudantium et quas suscipit iste autem et.\"\n}",
+					"raw": "{\n    \"annotation\": \"Вести с водоемов и охотничьих угодий.\",\n    \"category\": 1,\n    \"confirmedRequests\": 0,\n    \"description\": \"Любителей рыбалки и охоты могут общаться, организовывать совместные мероприятия по организации охоты и рыбалки.\",\n    \"eventDate\": \"2023-07-15 18:38:14\",\n    \"location\": {\n        \"lat\": 34.9003,\n        \"lon\": 149.9797\n    },\n    \"paid\": true,\n    \"participantLimit\": 809,\n    \"requestModeration\": true,\n    \"title\": \"Eos praesentium laudantium et quas suscipit iste autem et.\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

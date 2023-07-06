@@ -1,6 +1,7 @@
 package ru.practicum.mainmicroservice.model;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -16,16 +18,16 @@ import java.time.LocalDateTime;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private String text;
-
-    @ManyToOne
-    private User user;
+    String text;
 
     @ManyToOne
-    private Event event;
+    User user;
 
-    private LocalDateTime created;
+    @ManyToOne
+    Event event;
+
+    LocalDateTime created;
 
 }

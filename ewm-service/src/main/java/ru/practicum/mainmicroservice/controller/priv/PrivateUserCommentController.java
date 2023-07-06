@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CommentDto;
+import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.service.priv.PrivateUserCommentService;
 
 import javax.validation.Valid;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/users/{userId}/comments")
 public class PrivateUserCommentController {
 
-    final PrivateUserCommentService privateUserCommentService;
+    private final PrivateUserCommentService privateUserCommentService;
 
     public PrivateUserCommentController(PrivateUserCommentService privateUserCommentService) {
         this.privateUserCommentService = privateUserCommentService;
@@ -27,7 +28,8 @@ public class PrivateUserCommentController {
     public CommentDto saveComment(@Positive @PathVariable Long userId,
                                   @Positive @PathVariable Long eventId,
                                   @Valid @RequestBody CommentDto commentDto) {
-        log.info("create comment by user {}", userId);
+
+        log.debug(String.valueOf(LogMessages.TRY_ADD), "КОММЕНТАРИЙ");
         return privateUserCommentService.saveComment(userId, eventId, commentDto);
     }
 
@@ -37,7 +39,8 @@ public class PrivateUserCommentController {
     public List<CommentDto> getAllCommentsByUser(@Positive @PathVariable Long userId,
                                                  @RequestParam(defaultValue = "0") int from,
                                                  @RequestParam(defaultValue = "10") int size) {
-        log.info("get all user {} comments", userId);
+
+        log.debug(String.valueOf(LogMessages.TRY_GET_ALL), "КОММЕНТАРИИ ПОЛЬЗОВАТЕЛЯ");
         return privateUserCommentService.getAllCommentsByUser(userId, from, size);
     }
 
@@ -47,7 +50,8 @@ public class PrivateUserCommentController {
     public CommentDto updateComment(@Positive @PathVariable Long commentId,
                                     @Positive @PathVariable Long userId,
                                     @Valid @RequestBody CommentDto commentDto) {
-        log.info("update comment {}", commentId);
+
+        log.debug(String.valueOf(LogMessages.TRY_UPDATE), "КОММЕНТАРИЙ");
         return privateUserCommentService.updateComment(commentId, userId, commentDto);
     }
 
@@ -55,7 +59,8 @@ public class PrivateUserCommentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@Positive @PathVariable Long userId,
                               @Positive @PathVariable Long commentId) {
-        log.info("delete comment {}", commentId);
+
+        log.debug(String.valueOf(LogMessages.TRY_REMOVE_OBJECT), "КОММЕНТАРИЙ");
         privateUserCommentService.deleteComment(commentId, userId);
     }
 

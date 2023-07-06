@@ -1,11 +1,15 @@
 package ru.practicum.mainmicroservice.service.pub;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.mainmicroservice.dto.CommentDto;
 import ru.practicum.mainmicroservice.dto.CommentMapper;
 import ru.practicum.mainmicroservice.exception.NotFoundException;
+import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.model.Event;
 import ru.practicum.mainmicroservice.repository.CommentRepository;
 import ru.practicum.mainmicroservice.repository.EventRepository;
@@ -13,10 +17,12 @@ import ru.practicum.mainmicroservice.repository.EventRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Service
 public class PublicUserCommentService {
-    CommentRepository commentRepository;
-    EventRepository eventRepository;
+    final CommentRepository commentRepository;
+    final EventRepository eventRepository;
 
     public PublicUserCommentService(CommentRepository commentRepository,
                                     EventRepository eventRepository) {
@@ -30,6 +36,8 @@ public class PublicUserCommentService {
         Event event = eventRepository.findById(eventId).orElseThrow(() ->
                 new NotFoundException("Событие не найдено"));
         PageRequest pageRequest = PageRequest.of(from / size, size);
+
+        log.debug(String.valueOf(LogMessages.GET_ALL), "КОММЕНТАРИЕВ ПО СОБЫТИЮ");
         return commentRepository.findAllByEvent(event, pageRequest)
                 .stream()
                 .map(CommentMapper::toCommentDto)

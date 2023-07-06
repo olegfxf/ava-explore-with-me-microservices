@@ -1,6 +1,7 @@
 package ru.practicum.mainmicroservice.dto;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDto {
@@ -15,9 +17,9 @@ public class CommentDto {
 
     @NotEmpty
     @Size(max = 2000)
-    private String text;
+    String text;
 
-    private String authorName;
+    String authorName;
 
-    private String created;
+    String created;
 }

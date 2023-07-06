@@ -3,6 +3,7 @@ package ru.practicum.mainmicroservice.controller.pub;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CommentDto;
+import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.service.pub.PublicUserCommentService;
 
 import javax.validation.constraints.Positive;
@@ -12,7 +13,7 @@ import java.util.List;
 @RequestMapping("/events/{eventId}/comments")
 @RestController
 public class PublicUserCommentController {
-    PublicUserCommentService publicUserCommentService;
+    private final PublicUserCommentService publicUserCommentService;
 
     public PublicUserCommentController(PublicUserCommentService publicUserCommentService) {
         this.publicUserCommentService = publicUserCommentService;
@@ -23,7 +24,8 @@ public class PublicUserCommentController {
     public List<CommentDto> getAllCommentsForEvent(@Positive @PathVariable Long eventId,
                                                    @RequestParam(defaultValue = "0") int from,
                                                    @RequestParam(defaultValue = "10") int size) {
-        log.info("get all comments for event {}", eventId);
+
+        log.debug(String.valueOf(LogMessages.TRY_GET_ALL), "КОММЕНТАРИИ ПО СОБЫТИЮ");
         return publicUserCommentService.getAllCommentsForEvent(eventId, from, size);
     }
 }

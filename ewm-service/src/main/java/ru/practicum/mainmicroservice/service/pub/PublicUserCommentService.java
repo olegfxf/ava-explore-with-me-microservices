@@ -3,7 +3,7 @@ package ru.practicum.mainmicroservice.service.pub;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.mainmicroservice.dto.CommentDto;
@@ -35,10 +35,11 @@ public class PublicUserCommentService {
     public List<CommentDto> getAllCommentsForEvent(Long eventId, int from, int size) {
         Event event = eventRepository.findById(eventId).orElseThrow(() ->
                 new NotFoundException("Событие не найдено"));
-        PageRequest pageRequest = PageRequest.of(from / size, size);
+        // PageRequest pageRequest = PageRequest.of(from / size, size);
+        Pageable pageable = GetPagable.of(from, size);
 
         log.debug(String.valueOf(LogMessages.GET_ALL), "КОММЕНТАРИЕВ ПО СОБЫТИЮ");
-        return commentRepository.findAllByEvent(event, pageRequest)
+        return commentRepository.findAllByEvent(event, pageable)
                 .stream()
                 .map(CommentMapper::toCommentDto)
                 .collect(Collectors.toList());

@@ -1,4 +1,4 @@
-package ru.practicum.mainmicroservice.service.pub;
+package ru.practicum.mainmicroservice.util;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

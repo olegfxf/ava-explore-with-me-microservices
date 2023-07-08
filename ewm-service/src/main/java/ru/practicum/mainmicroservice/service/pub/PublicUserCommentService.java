@@ -13,6 +13,7 @@ import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.model.Event;
 import ru.practicum.mainmicroservice.repository.CommentRepository;
 import ru.practicum.mainmicroservice.repository.EventRepository;
+import ru.practicum.mainmicroservice.util.AppPagable;
 
 import java.util.List;
 import java.util.stream.Collectors;

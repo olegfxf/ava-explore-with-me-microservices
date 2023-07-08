@@ -1,6 +1,5 @@
 package ru.practicum.mainmicroservice.controller.priv;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -19,14 +18,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/users/{userId}/comments")
 @Validated
-@RequiredArgsConstructor
 public class PrivateUserCommentController {
 
     private final PrivateUserCommentService privateUserCommentService;
 
-//    public PrivateUserCommentController(PrivateUserCommentService privateUserCommentService) {
-//        this.privateUserCommentService = privateUserCommentService;
-//    }
+    public PrivateUserCommentController(PrivateUserCommentService privateUserCommentService) {
+        this.privateUserCommentService = privateUserCommentService;
+    }
 
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)

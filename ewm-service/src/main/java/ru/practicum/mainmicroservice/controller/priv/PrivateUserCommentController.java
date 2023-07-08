@@ -9,6 +9,7 @@ import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.service.priv.PrivateUserCommentService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class PrivateUserCommentController {
 
     @GetMapping("/events/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<CommentDto> getAllCommentsByUser(@PositiveOrZero @PathVariable Long userId,
+    public List<CommentDto> getAllCommentsByUser(@Positive @PathVariable Long userId,
                                                  @RequestParam(defaultValue = "0") int from,
                                                  @RequestParam(defaultValue = "10") int size) {
 

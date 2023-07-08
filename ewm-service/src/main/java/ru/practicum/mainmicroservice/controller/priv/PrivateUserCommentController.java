@@ -2,6 +2,7 @@ package ru.practicum.mainmicroservice.controller.priv;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CommentDto;
 import ru.practicum.mainmicroservice.messages.LogMessages;
@@ -15,6 +16,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/users/{userId}/comments")
+@Validated
 public class PrivateUserCommentController {
 
     private final PrivateUserCommentService privateUserCommentService;

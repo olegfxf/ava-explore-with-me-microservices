@@ -1,9 +1,11 @@
 package ru.practicum.mainmicroservice.dto;
 
+import lombok.experimental.UtilityClass;
 import ru.practicum.mainmicroservice.model.Location;
 
+@UtilityClass
 public class LocationMapper {
-    public static LocationDto toLocationDto(Location location) {
+    public LocationDto toLocationDto(Location location) {
         return LocationDto
                 .builder()
                 .lat(location.getLat())
@@ -11,7 +13,7 @@ public class LocationMapper {
                 .build();
     }
 
-    public static Location toLocation(LocationDto locationDto) {
+    public Location toLocation(LocationDto locationDto) {
         return Location
                 .builder()
                 .lat(locationDto.getLat())

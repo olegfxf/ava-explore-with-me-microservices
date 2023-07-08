@@ -1,12 +1,14 @@
 package ru.practicum.mainmicroservice.dto;
 
+import lombok.experimental.UtilityClass;
 import ru.practicum.mainmicroservice.model.Compilation;
 import ru.practicum.mainmicroservice.model.Event;
 
 import java.util.List;
 
+@UtilityClass
 public class CompilationMapper {
-    public static Compilation toCompilation(NewCompilationDto newCompilationDto,
+    public Compilation toCompilation(NewCompilationDto newCompilationDto,
                                             List<Event> events) {
         Boolean pinned = newCompilationDto.getPinned() == null ? false : newCompilationDto.getPinned();
         return Compilation.builder()
@@ -16,7 +18,7 @@ public class CompilationMapper {
                 .build();
     }
 
-    public static CompilationDto toCompilationDto(Compilation compilation,
+    public CompilationDto toCompilationDto(Compilation compilation,
                                                   List<EventShortDto> eventShortDtos) {
         return CompilationDto.builder()
                 .id(compilation.getId())

@@ -24,7 +24,7 @@ public class PrivateUserCommentController {
     }
 
     @PostMapping("/{eventId}")
-   // @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)
     public CommentDto saveComment(@Positive @PathVariable Long userId,
                                   @Positive @PathVariable Long eventId,
                                   @Valid @RequestBody CommentDto commentDto) {

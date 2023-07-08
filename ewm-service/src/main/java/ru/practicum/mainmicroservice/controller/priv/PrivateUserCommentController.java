@@ -9,7 +9,7 @@ import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.service.priv.PrivateUserCommentService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 
@@ -27,8 +27,8 @@ public class PrivateUserCommentController {
 
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentDto saveComment(@Positive @PathVariable Long userId,
-                                  @Positive @PathVariable Long eventId,
+    public CommentDto saveComment(@PositiveOrZero @PathVariable Long userId,
+                                  @PositiveOrZero @PathVariable Long eventId,
                                   @Valid @RequestBody CommentDto commentDto) {
 
         log.debug(String.valueOf(LogMessages.TRY_ADD), "КОММЕНТАРИЙ");
@@ -38,7 +38,7 @@ public class PrivateUserCommentController {
 
     @GetMapping("/events/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<CommentDto> getAllCommentsByUser(@Positive @PathVariable Long userId,
+    public List<CommentDto> getAllCommentsByUser(@PositiveOrZero @PathVariable Long userId,
                                                  @RequestParam(defaultValue = "0") int from,
                                                  @RequestParam(defaultValue = "10") int size) {
 
@@ -49,8 +49,8 @@ public class PrivateUserCommentController {
 
     @PatchMapping("/{commentId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentDto updateComment(@Positive @PathVariable Long commentId,
-                                    @Positive @PathVariable Long userId,
+    public CommentDto updateComment(@PositiveOrZero @PathVariable Long commentId,
+                                    @PositiveOrZero @PathVariable Long userId,
                                     @Valid @RequestBody CommentDto commentDto) {
 
         log.debug(String.valueOf(LogMessages.TRY_UPDATE), "КОММЕНТАРИЙ");
@@ -59,8 +59,8 @@ public class PrivateUserCommentController {
 
     @DeleteMapping("/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment(@Positive @PathVariable Long userId,
-                              @Positive @PathVariable Long commentId) {
+    public void deleteComment(@PositiveOrZero @PathVariable Long userId,
+                              @PositiveOrZero @PathVariable Long commentId) {
 
         log.debug(String.valueOf(LogMessages.TRY_REMOVE_OBJECT), "КОММЕНТАРИЙ");
         privateUserCommentService.deleteComment(commentId, userId);

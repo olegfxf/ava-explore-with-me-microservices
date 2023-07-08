@@ -35,7 +35,7 @@ public class PublicUserCommentService {
     public List<CommentDto> getAllCommentsForEvent(Long eventId, int from, int size) {
         Event event = eventRepository.findById(eventId).orElseThrow(() ->
                 new NotFoundException("Событие не найдено"));
-        Pageable pageable = GetPagable.of(from, size);
+        Pageable pageable = AppPagable.of(from, size);
 
         log.debug(String.valueOf(LogMessages.GET_ALL), "КОММЕНТАРИЕВ ПО СОБЫТИЮ");
         return commentRepository.findAllByEvent(event, pageable)

@@ -1,5 +1,6 @@
 package ru.practicum.mainmicroservice.service.pub;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,12 +21,13 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class PublicCompilationService {
     private final CompilationRepository compilationRepository;
 
-    public PublicCompilationService(CompilationRepository compilationRepository) {
-        this.compilationRepository = compilationRepository;
-    }
+//    public PublicCompilationService(CompilationRepository compilationRepository) {
+//        this.compilationRepository = compilationRepository;
+//    }
 
     public List<CompilationDto> getAllPublicCompilation(Boolean pinned, Integer from, Integer size) {
         Pageable pageable = PageRequest.of(from / size, size);

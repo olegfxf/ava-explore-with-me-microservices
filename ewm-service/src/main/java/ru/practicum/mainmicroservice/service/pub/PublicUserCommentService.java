@@ -1,6 +1,7 @@
 package ru.practicum.mainmicroservice.service.pub;
 
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -21,15 +22,16 @@ import java.util.stream.Collectors;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Service
+@RequiredArgsConstructor
 public class PublicUserCommentService {
     final CommentRepository commentRepository;
     final EventRepository eventRepository;
 
-    public PublicUserCommentService(CommentRepository commentRepository,
-                                    EventRepository eventRepository) {
-        this.commentRepository = commentRepository;
-        this.eventRepository = eventRepository;
-    }
+//    public PublicUserCommentService(CommentRepository commentRepository,
+//                                    EventRepository eventRepository) {
+//        this.commentRepository = commentRepository;
+//        this.eventRepository = eventRepository;
+//    }
 
 
     @Transactional(readOnly = true)

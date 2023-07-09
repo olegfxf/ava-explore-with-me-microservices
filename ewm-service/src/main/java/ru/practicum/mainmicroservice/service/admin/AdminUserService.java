@@ -1,5 +1,6 @@
 package ru.practicum.mainmicroservice.service.admin;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,15 +21,16 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AdminUserService {
     public static final int MAX_USERNAME_LENGTH = 63;
     public static final int MAX_DOMAIN_NAME_LENGTH = 63;
     public static final int MAX_EMAIL_LENGTH = 254;
     private final UserRepository userRepository;
 
-    public AdminUserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+//    public AdminUserService(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
     @Transactional
     public UserDto saveUser(NewUserRequest newUserRequest) {

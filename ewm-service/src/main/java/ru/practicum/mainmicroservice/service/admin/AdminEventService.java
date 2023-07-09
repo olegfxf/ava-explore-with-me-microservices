@@ -3,6 +3,7 @@ package ru.practicum.mainmicroservice.service.admin;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.practicum.mainmicroservice.dto.EventFullDto;
@@ -17,7 +18,6 @@ import ru.practicum.mainmicroservice.model.Status;
 import ru.practicum.mainmicroservice.repository.EventRepository;
 import ru.practicum.mainmicroservice.repository.LocationRepository;
 import ru.practicum.mainmicroservice.repository.RequestRepository;
-import ru.practicum.mainmicroservice.util.AppPagable;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -91,7 +91,7 @@ public class AdminEventService {
                 .map(State::valueOf)
                 .collect(Collectors.toList());
 
-        Pageable pageable = AppPagable.of(from, size);
+        Pageable pageable = (Pageable) PageRequest.of(from / size, size);
         LocalDateTime start = rangeStart == null ? null : LocalDateTime.parse(rangeStart, dateTimeFormatter);
         LocalDateTime end = rangeEnd == null ? null : LocalDateTime.parse(rangeEnd, dateTimeFormatter);
         List<EventFullDto> events = eventRepository.searchAdminEvents2(userIds, stateList, categoryIds,

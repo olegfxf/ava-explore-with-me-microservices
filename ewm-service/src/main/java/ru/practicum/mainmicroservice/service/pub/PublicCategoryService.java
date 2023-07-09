@@ -1,6 +1,7 @@
 package ru.practicum.mainmicroservice.service.pub;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.practicum.mainmicroservice.dto.CategoryDto;
@@ -8,7 +9,6 @@ import ru.practicum.mainmicroservice.dto.CategoryMapper;
 import ru.practicum.mainmicroservice.exception.NotFoundException;
 import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.repository.CategoryRepository;
-import ru.practicum.mainmicroservice.util.AppPagable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +24,7 @@ public class PublicCategoryService {
     }
 
     public List<CategoryDto> getAllPublicCategories(Integer from, Integer size) {
-        Pageable pageable = AppPagable.of(from, size);
+        Pageable pageable = (Pageable) PageRequest.of(from / size, size);
         log.debug(String.valueOf(LogMessages.GET_ALL), "Категорий");
         return categoryRepository.findAll(pageable).stream()
                 .map(CategoryMapper::toCategoryDto)

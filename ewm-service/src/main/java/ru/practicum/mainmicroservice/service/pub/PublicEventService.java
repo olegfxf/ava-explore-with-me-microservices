@@ -19,7 +19,6 @@ import ru.practicum.mainmicroservice.repository.EventRepository;
 import ru.practicum.mainmicroservice.repository.RequestRepository;
 import ru.practicum.mainmicroservice.stats.ConfigClient;
 import ru.practicum.mainmicroservice.stats.StatsServer;
-import ru.practicum.mainmicroservice.util.AppPagable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -62,7 +61,7 @@ public class PublicEventService {
             throw new BadRequestException("Текст запроса должен содержать сообщение длинойбольше двух");
         }
 
-        Pageable pageable = AppPagable.of(from, size);
+        Pageable pageable = PageRequest.of(from / size, size);
         LocalDateTime start = rangeStart == null ? null : LocalDateTime.parse(rangeStart, dateTimeFormatter);
         LocalDateTime end = rangeEnd == null ? null : LocalDateTime.parse(rangeEnd, dateTimeFormatter);
         List<Event> events = eventRepository.searchEvents2(text, PUBLISHED, categories, paid, start, end, pageable);

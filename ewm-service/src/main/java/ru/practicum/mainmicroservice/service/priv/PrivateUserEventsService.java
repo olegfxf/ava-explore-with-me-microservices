@@ -3,6 +3,7 @@ package ru.practicum.mainmicroservice.service.priv;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,6 @@ import ru.practicum.mainmicroservice.exception.NotFoundException;
 import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.model.*;
 import ru.practicum.mainmicroservice.repository.*;
-import ru.practicum.mainmicroservice.util.AppPagable;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -74,7 +74,7 @@ public class PrivateUserEventsService {
                 .orElseThrow(() -> new NotFoundException("Пользователь с id = " + userId + " не найден"));
 
         log.debug(String.valueOf(LogMessages.GET_ALL), "СОБЫТИЙ");
-        Pageable pageable = AppPagable.of(from, size);
+        Pageable pageable = PageRequest.of(from / size, size);
         return eventRepository.findAllByInitiatorId(userId, pageable)
                 .stream()
                 .map(EventMapper::toEventFullDto)

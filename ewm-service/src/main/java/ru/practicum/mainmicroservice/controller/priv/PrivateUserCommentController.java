@@ -38,7 +38,6 @@ public class PrivateUserCommentController {
 
 
     @GetMapping("/events/{eventId}")
-    @ResponseStatus(HttpStatus.CREATED)
     public List<CommentDto> getAllCommentsByUser(@Positive @PathVariable Long userId,
                                                  @RequestParam(defaultValue = "0") int from,
                                                  @RequestParam(defaultValue = "10") int size) {
@@ -49,7 +48,6 @@ public class PrivateUserCommentController {
 
 
     @PatchMapping("/{commentId}")
-    @ResponseStatus(HttpStatus.CREATED)
     public CommentDto updateComment(@PositiveOrZero @PathVariable Long commentId,
                                     @PositiveOrZero @PathVariable Long userId,
                                     @Valid @RequestBody CommentDto commentDto) {

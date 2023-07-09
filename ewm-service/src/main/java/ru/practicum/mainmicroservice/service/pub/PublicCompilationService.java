@@ -13,6 +13,7 @@ import ru.practicum.mainmicroservice.exception.NotFoundException;
 import ru.practicum.mainmicroservice.messages.LogMessages;
 import ru.practicum.mainmicroservice.model.Compilation;
 import ru.practicum.mainmicroservice.repository.CompilationRepository;
+import ru.practicum.mainmicroservice.util.AppPagable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class PublicCompilationService {
     }
 
     public List<CompilationDto> getAllPublicCompilation(Boolean pinned, Integer from, Integer size) {
-        Pageable pageable = PageRequest.of(from / size, size);
+        Pageable pageable = AppPagable.of(from, size);
 
         Page<Compilation> compilations;
         if (pinned != null)

@@ -1,6 +1,5 @@
 package ru.practicum.mainmicroservice.service.pub;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,14 +15,13 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class PublicCategoryService {
     private CategoryRepository categoryRepository;
 
-//    public PublicCategoryService(
-//            CategoryRepository categoryRepository) {
-//        this.categoryRepository = categoryRepository;
-//    }
+    public PublicCategoryService(
+            CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     public List<CategoryDto> getAllPublicCategories(Integer from, Integer size) {
         Pageable pageable = (Pageable) PageRequest.of(from / size, size);

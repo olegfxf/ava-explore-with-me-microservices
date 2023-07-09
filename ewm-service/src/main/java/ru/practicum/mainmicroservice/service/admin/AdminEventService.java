@@ -1,7 +1,6 @@
 package ru.practicum.mainmicroservice.service.admin;
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -30,19 +29,18 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@RequiredArgsConstructor
 public class AdminEventService {
     final EventRepository eventRepository;
     final LocationRepository locationRepository;
     final RequestRepository requestRepository;
 
-//    public AdminEventService(EventRepository eventRepository,
-//                             LocationRepository locationRepository,
-//                             RequestRepository requestRepository) {
-//        this.eventRepository = eventRepository;
-//        this.locationRepository = locationRepository;
-//        this.requestRepository = requestRepository;
-//    }
+    public AdminEventService(EventRepository eventRepository,
+                             LocationRepository locationRepository,
+                             RequestRepository requestRepository) {
+        this.eventRepository = eventRepository;
+        this.locationRepository = locationRepository;
+        this.requestRepository = requestRepository;
+    }
 
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 

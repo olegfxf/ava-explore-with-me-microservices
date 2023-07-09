@@ -1,7 +1,6 @@
 package ru.practicum.mainmicroservice.service.priv;
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,19 +23,18 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@RequiredArgsConstructor
 public class PrivateUserRequestService {
     final RequestRepository requestRepository;
     UserRepository userRepository;
     final EventRepository eventRepository;
 
-//    public PrivateUserRequestService(RequestRepository requestRepository,
-//                                     UserRepository userRepository,
-//                                     EventRepository eventRepository) {
-//        this.requestRepository = requestRepository;
-//        this.userRepository = userRepository;
-//        this.eventRepository = eventRepository;
-//    }
+    public PrivateUserRequestService(RequestRepository requestRepository,
+                                     UserRepository userRepository,
+                                     EventRepository eventRepository) {
+        this.requestRepository = requestRepository;
+        this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
+    }
 
 
     public List<ParticipationRequestDto> getAllUserRequest(Long userId) {

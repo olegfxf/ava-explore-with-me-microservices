@@ -25,9 +25,6 @@ import java.util.stream.Collectors;
 public class PublicCompilationService {
     private final CompilationRepository compilationRepository;
 
-//    public PublicCompilationService(CompilationRepository compilationRepository) {
-//        this.compilationRepository = compilationRepository;
-//    }
 
     public List<CompilationDto> getAllPublicCompilation(Boolean pinned, Integer from, Integer size) {
         Pageable pageable = PageRequest.of(from / size, size);

@@ -30,13 +30,6 @@ public class PrivateUserCommentService {
     final UserRepository userRepository;
     final EventRepository eventRepository;
 
-//    public PrivateUserCommentService(CommentRepository commentRepository, UserRepository userRepository,
-//                                     EventRepository eventRepository) {
-//        this.commentRepository = commentRepository;
-//        this.userRepository = userRepository;
-//        this.eventRepository = eventRepository;
-//    }
-
 
     public CommentDto saveComment(Long userId, Long eventId, CommentDto commentDto) {
         User user = userRepository.findById(userId).orElseThrow(() ->

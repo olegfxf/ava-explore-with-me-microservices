@@ -26,10 +26,6 @@ public class AdminCompilationService {
     final CompilationRepository compilationRepository;
     final EventRepository eventRepository;
 
-//    public AdminCompilationService(CompilationRepository compilationRepository, EventRepository eventRepository) {
-//        this.compilationRepository = compilationRepository;
-//        this.eventRepository = eventRepository;
-//    }
 
     @Transactional
     public CompilationDto saveAdminCompilation(NewCompilationDto newCompilationDto) {

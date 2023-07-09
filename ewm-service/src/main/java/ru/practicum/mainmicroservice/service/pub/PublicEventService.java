@@ -43,16 +43,6 @@ public class PublicEventService {
     final StatsServer statsServer;
     final ConfigClient configClient;
 
-//    public PublicEventService(EventRepository eventRepository,
-//                              StatsServer statsServer,
-//                              ConfigClient configClient,
-//                              RequestRepository requestRepository) {
-//        this.eventRepository = eventRepository;
-//        this.statsServer = statsServer;
-//        this.configClient = configClient;
-//        this.requestRepository = requestRepository;
-//    }
-
     public List<EventShortDto> getAllEvants(String text, List<Long> categories, Boolean paid, String rangeStart,
                                             String rangeEnd, Boolean onlyAvailable, String sort, Integer from,
                                             Integer size, HttpServletRequest request)

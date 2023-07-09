@@ -27,12 +27,6 @@ public class PublicUserCommentService {
     final CommentRepository commentRepository;
     final EventRepository eventRepository;
 
-//    public PublicUserCommentService(CommentRepository commentRepository,
-//                                    EventRepository eventRepository) {
-//        this.commentRepository = commentRepository;
-//        this.eventRepository = eventRepository;
-//    }
-
 
     @Transactional(readOnly = true)
     public List<CommentDto> getAllCommentsForEvent(Long eventId, int from, int size) {

@@ -36,18 +36,6 @@ public class PrivateUserEventsService {
     final LocationRepository locationRepository;
     final RequestRepository requestRepository;
 
-//    public PrivateUserEventsService(
-//            EventRepository eventRepository,
-//            UserRepository userRepository,
-//            CategoryRepository categoryRepository,
-//            LocationRepository locationRepository,
-//            RequestRepository requestRepository) {
-//        this.categoryRepository = categoryRepository;
-//        this.eventRepository = eventRepository;
-//        this.userRepository = userRepository;
-//        this.locationRepository = locationRepository;
-//        this.requestRepository = requestRepository;
-//    }
 
     @Transactional
     public EventFullDto saveEvent(Long userId, NewEventDto newEventDto) {

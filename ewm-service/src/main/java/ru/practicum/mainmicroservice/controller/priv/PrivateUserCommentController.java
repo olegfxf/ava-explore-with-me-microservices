@@ -24,9 +24,6 @@ public class PrivateUserCommentController {
 
     private final PrivateUserCommentService privateUserCommentService;
 
-//    public PrivateUserCommentController(PrivateUserCommentService privateUserCommentService) {
-//        this.privateUserCommentService = privateUserCommentService;
-//    }
 
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)

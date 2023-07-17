@@ -1,6 +1,7 @@
 package ru.practicum.mainmicroservice.service.admin;
 
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,14 +21,11 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class AdminCompilationService {
     final CompilationRepository compilationRepository;
     final EventRepository eventRepository;
 
-    public AdminCompilationService(CompilationRepository compilationRepository, EventRepository eventRepository) {
-        this.compilationRepository = compilationRepository;
-        this.eventRepository = eventRepository;
-    }
 
     @Transactional
     public CompilationDto saveAdminCompilation(NewCompilationDto newCompilationDto) {

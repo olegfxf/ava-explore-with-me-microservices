@@ -1,17 +1,19 @@
 package ru.practicum.mainmicroservice.dto;
 
+import lombok.experimental.UtilityClass;
 import ru.practicum.mainmicroservice.model.User;
 
+@UtilityClass
 public class UserMapper {
 
-    public static User toUser(NewUserRequest userDto) {
+    public User toUser(NewUserRequest userDto) {
         return User.builder()
                 .name(userDto.getName())
                 .email(userDto.getEmail())
                 .build();
     }
 
-    public static UserDto toUserDto(User user) {
+    public UserDto toUserDto(User user) {
         return UserDto.builder()
                 .id(user.getId())
                 .name(user.getName())
@@ -19,14 +21,14 @@ public class UserMapper {
                 .build();
     }
 
-    public static UserShortDto toUserShortDto(User user) {
+    public UserShortDto toUserShortDto(User user) {
         return UserShortDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .build();
     }
 
-    public static User toUserDto(NewUserRequest newUserRequest) {
+    public User toUserDto(NewUserRequest newUserRequest) {
         return User.builder()
                 .name(newUserRequest.getName())
                 .email(newUserRequest.getEmail())

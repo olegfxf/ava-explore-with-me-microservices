@@ -1,14 +1,16 @@
 package ru.practicum.mainmicroservice.dto;
 
+import lombok.experimental.UtilityClass;
 import ru.practicum.mainmicroservice.model.ParticipationRequest;
 
 import java.time.format.DateTimeFormatter;
 
+@UtilityClass
 public class ParticipationRequestMapper {
-    static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 
-    public static ParticipationRequestDto toParticipationRequestDto(ParticipationRequest participationRequest) {
+    public ParticipationRequestDto toParticipationRequestDto(ParticipationRequest participationRequest) {
         return ParticipationRequestDto.builder()
                 .id(participationRequest.getId())
                 .created(participationRequest.getCreated().format(dateTimeFormatter))

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CategoryDto;
 import ru.practicum.mainmicroservice.dto.NewCategoryDto;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.model.Category;
 import ru.practicum.mainmicroservice.service.admin.AdminCategoryService;
 
 import javax.validation.Valid;

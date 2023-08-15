@@ -1,5 +1,5 @@
 # java-explore-with-me
-Template repository for ExploreWithMe project.
+Java-explore-with-me это сервис, который позволит пользователям делиться информацией об интересных событиях и находить компанию для участия в них.
 
-Я написал бэкенд для сервиса, который позволит пользователям делиться информацией об интересных событиях и находить компанию для участия в них.
-Использовались: java SE, Spring Boot, Maven, Git, REST Api, Lombok, PostgresSQL , Spring Data JPA, Docker.
+# Стек технологий
+Java 11, Spring Boot, Maven, Git, REST Api, Lombok, PostgresSQL , Spring Data JPA, Docker.

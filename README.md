@@ -33,7 +33,7 @@ Java 11, Spring Boot, Maven, Git, REST Api, Lombok, PostgresSQL , Spring Data JP
 
 
 # Запуск приложения
-склонировать проект на свой компьютер
-выполнить команду mvn clean package
-выполнить команду docker-compose up -d
+* склонировать проект на свой компьютер
+* выполнить команду mvn clean package
+* выполнить команду docker-compose up -d
 

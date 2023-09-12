@@ -1,4 +1,4 @@
-package ru.practicum.mainmicroservice.service.admin;
+package ru.practicum.mainmicroservice.service.impl;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

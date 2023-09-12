@@ -1,0 +1,69 @@
+server:
+  port: 8080
+
+#eureka:                     # разремачить без Докера
+#  instance:                 # разремачить без Докера
+#    hostname: localhost     # разремачить без Докера
+
+
+#eureka:                    # разремачить для Докера
+#  client:                  # разремачить для Докера
+#    serviceUrl:            # разремачить для Докера
+##      defaultZone: ${eureka_url:http://discovery-service:8761/eureka/}
+#      defaultZone: http://localhost:8761/eureka/
+##      defaultZone: lb://discovery-service:8761/eureka/ #http://localhost:8761/eureka/
+
+
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: TRACE
+#    org.springframework.http.server.reactive: DEBUG
+#    org.springframework.web.reactive: DEBUG
+#    reactor.ipc.netty: DEBUG
+#    reactor.netty: DEBUG
+
+#security.enable-csrf: false
+management:
+  security:
+    enabled: false
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+#      httpclient:
+#        wiretap: true
+#      httpserver:
+#        wiretap: true
+      routes:
+        - id: admin-microservice
+          #uri: http://localhost:8085/
+          #uri: http://${eureka.server.host}:8085/
+          uri: lb://admin-microservice #http://localhost:8085/
+          predicates:
+            - Path=/admin/**
+        - id: private-microservice
+          #uri: http://localhost:8086/
+          #uri: http://${eureka.server.host}:8086/
+          uri: lb://private-microservice #http://localhost:8086/
+          predicates:
+            - Path=/users/**
+        - id: public-microservice
+          #uri: http://localhost:8087/
+          #uri: http://${eureka.server.host}:8087/
+          uri: lb://public-microservice #http://localhost:8087/
+          predicates:
+            - Path=/**
+
+
+#        - id: stats-microservice
+#          #uri: http://localhost:9090/
+#          uri: lb://stats-microservice
+#          predicates:
+#            - Path=/stats/**

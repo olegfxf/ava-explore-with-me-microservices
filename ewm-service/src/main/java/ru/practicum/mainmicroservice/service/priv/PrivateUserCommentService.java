@@ -1,7 +1,6 @@
-package ru.practicum.mainmicroservice.service.priv;
+package ru.practicum.mainmicroservice.service.impl;
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -24,11 +23,17 @@ import java.util.stream.Collectors;
 @Slf4j
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Service
-@RequiredArgsConstructor
 public class PrivateUserCommentService {
     final CommentRepository commentRepository;
     final UserRepository userRepository;
     final EventRepository eventRepository;
+
+    public PrivateUserCommentService(CommentRepository commentRepository, UserRepository userRepository,
+                                     EventRepository eventRepository) {
+        this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
+    }
 
 
     public CommentDto saveComment(Long userId, Long eventId, CommentDto commentDto) {

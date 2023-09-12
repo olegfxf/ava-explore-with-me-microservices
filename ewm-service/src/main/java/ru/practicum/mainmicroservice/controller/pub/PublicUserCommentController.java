@@ -5,7 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CommentDto;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.pub.PublicUserCommentService;
+import ru.practicum.mainmicroservice.service.impl.PublicUserCommentService;
 
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;

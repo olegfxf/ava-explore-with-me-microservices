@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.EventFullDto;
 import ru.practicum.mainmicroservice.dto.UpdateEventAdminRequest;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.admin.AdminEventService;
+import ru.practicum.mainmicroservice.service.impl.AdminEventService;
 
 import javax.validation.Valid;
 import java.util.List;

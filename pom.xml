@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.5</version>
+		<version>2.7.12</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -20,16 +20,36 @@
 
 	<modules>
         <module>stats-service</module>
-		<module>ewm-service</module>
-	</modules>
+		<module>discovery_server</module>
+		<module>gateway_server</module>
+<!--		<module>ewm-service</module>-->
+		<module>admin-microservice</module>
+		<module>private-microservice</module>
+		<module>public-microservice</module>
+        <module>common</module>
+
+    </modules>
 
 
 	<properties>
-		<java.version>11</java.version>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>17</java.version>
+		<!--		<maven.compiler.source>11</maven.compiler.source>-->
+		<!--		<maven.compiler.target>11</maven.compiler.target>-->
+		<!--		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+		<spring-cloud.version>2021.0.7</spring-cloud.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 
 

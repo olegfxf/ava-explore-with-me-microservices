@@ -1,4 +1,4 @@
-package ru.practicum.mainmicroservice.service.admin;
+package ru.practicum.mainmicroservice.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

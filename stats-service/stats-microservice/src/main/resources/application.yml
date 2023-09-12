@@ -1,0 +1,17 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: stats-microservice
+
+#
+#  eureka:                     # разремачить без Докера
+#    instance:                 # разремачить без Докера
+#      hostname: localhost     # разремачить без Докера
+
+
+  eureka: # разремачить для Докера
+    client: # разремачить для Докера
+      serviceUrl: # разремачить для Докера
+        defaultZone: ${eureka_url:http://discovery-service:8761/eureka/}

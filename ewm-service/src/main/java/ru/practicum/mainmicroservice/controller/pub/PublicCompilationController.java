@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CompilationDto;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.pub.PublicCompilationService;
+import ru.practicum.mainmicroservice.service.impl.PublicCompilationService;
 
 import java.util.List;
 

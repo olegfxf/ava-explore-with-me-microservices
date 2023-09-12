@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: public-microservice
+server:
+  port: 8087
+
+#  eureka:                     # разремачить без Докера
+#    instance:                 # разремачить без Докера
+#      hostname: localhost     # разремачить без Докера
+
+
+  eureka:         # разремачить для Докера
+    client:       # разремачить для Докера
+      serviceUrl: # разремачить для Докера
+        defaultZone: ${eureka_url:http://discovery-service:8761/eureka/}

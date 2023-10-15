@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.users</OriginalElement>
+  <nodes>
+    <node x="-392.47251687560276" y="10.517839922854336">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.categories</node>
+    <node x="-167.5" y="-27.0">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.events</node>
+    <node x="149.9975891996143" y="-88.09257473481196">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.users</node>
+    <node x="-424.9975891996143" y="386.45853423336547">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.compilation_event</node>
+    <node x="-398.9975891996143" y="181.01639344262293">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.compilations</node>
+    <node x="144.47251687560276" y="124.77145612343301">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.requests</node>
+    <node x="-108.5" y="-186.0">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.locations</node>
+    <node x="144.97251687560276" y="333.79315332690453">a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.comments</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.events" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.categories" relationship="REFERENCES">
+      <point x="-79.33333333333331" y="-197.5" />
+      <point x="-127.83333333333331" y="-53.0" />
+      <point x="-316.97251687560276" y="-53.0" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.comments" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.users" relationship="REFERENCES">
+      <point x="41.5" y="-77.5" />
+      <point x="269.47251687560276" y="423.6441658630665" />
+      <point x="413.4101320582878" y="423.6441658630665" />
+      <point x="413.4101320582878" y="-53.0" />
+      <point x="233.4975891996143" y="-53.0" />
+      <point x="0.0" y="53.5" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.compilation_event" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.compilations" relationship="REFERENCES">
+      <point x="-51.0" y="-41.0" />
+      <point x="-322.9975891996143" y="386.45853423336547" />
+      <point x="0.0" y="53.5" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.requests" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.events" relationship="REFERENCES">
+      <point x="-0.0" y="-77.5" />
+      <point x="227.97251687560276" y="170.5" />
+      <point x="119.0" y="-0.0" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.events" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.users" relationship="REFERENCES">
+      <point x="79.33333333333331" y="-197.5" />
+      <point x="30.833333333333314" y="-53.0" />
+      <point x="177.83092253294762" y="-53.0" />
+      <point x="-55.66666666666667" y="53.5" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.requests" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.users" relationship="REFERENCES">
+      <point x="15.0" y="-77.5" />
+      <point x="242.97251687560276" y="-34.59257473481196" />
+      <point x="83.49999999999999" y="-0.0" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.compilation_event" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.events" relationship="REFERENCES">
+      <point x="51.0" y="-41.0" />
+      <point x="-271.9975891996143" y="426.8659594985535" />
+      <point x="-110.25699132111862" y="426.8659594985535" />
+      <point x="-110.25699132111862" y="368.0" />
+      <point x="0.0" y="197.5" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.comments" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.events" relationship="REFERENCES">
+      <point x="-41.5" y="-77.5" />
+      <point x="186.47251687560276" y="426.8659594985535" />
+      <point x="-25.152844744455138" y="426.8659594985535" />
+      <point x="-25.152844744455138" y="381.5564127290261" />
+      <point x="-24.3997107039537" y="381.5564127290261" />
+      <point x="-24.3997107039537" y="368.0" />
+      <point x="0.0" y="197.5" />
+    </edge>
+    <edge source="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.events" target="a6f533c4-2f91-45b7-afd1-8578a66e9b05.TABLE:ewm-db.public.locations" relationship="REFERENCES">
+      <point x="1.4210854715202004E-14" y="-197.5" />
+      <point x="0.0" y="53.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.3277848911651728" showDependencies="false" x="75.84233365477337" y="153.37029893924785" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

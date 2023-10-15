@@ -5,12 +5,13 @@ services:
     image: stats-microservice
     container_name: stats-container
     depends_on:
+      - discovery-service
       - stats-db
     ports:
       - "9090:9090"
-
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats-db
+      spring.datasource.url: jdbc:postgresql://stats-db:5432/stats-db
+      eureka.client.serviceUrl.defaultZone: http://discovery-service:8761/eureka
 
   stats-db:
     image: postgres:14-alpine
@@ -23,18 +24,19 @@ services:
       - POSTGRES_PASSWORD=root
 
 
-  ewm-service:
-    build: ./ewm-service
-    image: ewm-service
-    container_name: ewm-service
-    depends_on:
-      - ewm-db
-    ports:
-      - "8080:8080"
-#      - "8081:8081"
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm-db
-      - STATS_SERVER_URL=http://stats-server:9090
+#  ewm-service:
+#    build: ./ewm-service
+#    image: ewm-service
+#    container_name: ewm-service
+#    depends_on:
+#      - ewm-db
+#      - discovery-service
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      spring.datasource.url: jdbc:postgresql://ewm-db:5432/ewm-db
+#      stats.server.url: //stats-server:9090
+#      eureka.client.serviceUrl.defaultZone: http://discovery-service:8761/eureka
 
 
   ewm-db:
@@ -49,3 +51,103 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
 
+
+  discovery-service:
+    image: discovery_server
+    container_name: discovery-container
+    depends_on:
+      - ewm-db
+      - stats-db
+    ports:
+      - "8761:8761"
+
+
+  gateway-service:
+    image: gateway_server
+    container_name: gateway-container
+    depends_on:
+      - discovery-service
+    ports:
+      - "8080:8080"
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://discovery-service:8761/eureka
+
+#      - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
+
+
+  admin-microservice:
+    build: ./admin-microservice
+    image: admin-microservice
+    container_name: admin-container
+    ports:
+      - "8085:8085"
+    depends_on:
+      - discovery-service
+      - ewm-db
+    environment:
+      spring.datasource.url: jdbc:postgresql://ewm-db:5432/ewm-db
+      eureka.client.serviceUrl.defaultZone: http://discovery-service:8761/eureka
+#      - spring.datasource-url=http://jdbc:postgresql://ewm-db:5432/ewm-db
+#      - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
+
+
+  private-microservice:
+    build: ./private-microservice
+    image: private-microservice
+    container_name: private-container
+    ports:
+      - "8086:8086"
+    depends_on:
+      - discovery-service
+      - ewm-db
+    environment:
+      spring.datasource.url: jdbc:postgresql://ewm-db:5432/ewm-db
+      eureka.client.serviceUrl.defaultZone: http://discovery-service:8761/eureka
+
+#     SPRING_DATASOURCE_URL: jdbc:postgresql://ewm-db:5432/ewm-db
+#     EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: //discovery-service:8761/eureka #- eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
+#      eureka.client.service.url.defaultZone: //discovery-service:8761/eureka
+#      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://discovery-service:8761/eureka
+
+
+  public-microservice:
+    build: ./public-microservice
+    image: public-microservice
+    container_name: public-container
+    ports:
+      - "8087:8087"
+    depends_on:
+      - discovery-service
+      - ewm-db
+    environment:
+      spring.datasource.url: jdbc:postgresql://ewm-db:5432/ewm-db
+      eureka.client.serviceUrl.defaultZone: http://discovery-service:8761/eureka
+      stats-server.url: http://stats-server:9090
+
+
+
+  public-microservice2:
+  #    build: ./public-microservice
+   image: public-microservice
+   container_name: public-container2
+   ports:
+    - "9087:8087"
+   depends_on:
+    - discovery-service
+    - ewm-db
+   environment:
+    spring.datasource.url: jdbc:postgresql://ewm-db:5432/ewm-db
+    eureka.client.serviceUrl.defaultZone: http://discovery-service:8761/eureka
+    stats-server.url: http://stats-server:9090
+
+
+#        - spring.datasource-url=http://jdbc:postgresql://ewm-db:5432/ewm-db
+#        - eureka.client.service-url.defaultZone=http://discovery-service:8761/eureka
+#
+#
+#
+#    environment:
+#      - stats.server-url=http://stats-server:9090
+#      - admin.microservice-url=http://admin-microservice:8085
+#      - private.microservice-url=http://private-microservice:8086
+#      - public.microservice=http://public-microservice:8087

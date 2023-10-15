@@ -1,13 +1,12 @@
 package ru.practicum.mainmicroservice.controller.priv;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.CommentDto;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.priv.PrivateUserCommentService;
+import ru.practicum.mainmicroservice.service.impl.PrivateUserCommentService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -19,11 +18,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/users/{userId}/comments")
 @Validated
-@RequiredArgsConstructor
 public class PrivateUserCommentController {
 
     private final PrivateUserCommentService privateUserCommentService;
 
+    public PrivateUserCommentController(PrivateUserCommentService privateUserCommentService) {
+        this.privateUserCommentService = privateUserCommentService;
+    }
 
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
@@ -37,6 +38,7 @@ public class PrivateUserCommentController {
 
 
     @GetMapping("/events/{eventId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public List<CommentDto> getAllCommentsByUser(@Positive @PathVariable Long userId,
                                                  @RequestParam(defaultValue = "0") int from,
                                                  @RequestParam(defaultValue = "10") int size) {
@@ -47,6 +49,7 @@ public class PrivateUserCommentController {
 
 
     @PatchMapping("/{commentId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public CommentDto updateComment(@PositiveOrZero @PathVariable Long commentId,
                                     @PositiveOrZero @PathVariable Long userId,
                                     @Valid @RequestBody CommentDto commentDto) {

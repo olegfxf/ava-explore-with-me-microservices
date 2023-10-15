@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.EventFullDto;
 import ru.practicum.mainmicroservice.dto.EventShortDto;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.pub.PublicEventService;
+import ru.practicum.mainmicroservice.service.impl.PublicEventService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;

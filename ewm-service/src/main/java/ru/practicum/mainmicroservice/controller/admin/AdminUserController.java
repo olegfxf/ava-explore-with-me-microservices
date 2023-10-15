@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.NewUserRequest;
 import ru.practicum.mainmicroservice.dto.UserDto;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.admin.AdminUserService;
+import ru.practicum.mainmicroservice.service.impl.AdminUserService;
 
 import javax.validation.Valid;
 import java.util.List;

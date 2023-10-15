@@ -7,7 +7,7 @@ import ru.practicum.mainmicroservice.dto.CompilationDto;
 import ru.practicum.mainmicroservice.dto.NewCompilationDto;
 import ru.practicum.mainmicroservice.dto.UpdateCompilationRequest;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.admin.AdminCompilationService;
+import ru.practicum.mainmicroservice.service.impl.AdminCompilationService;
 
 import javax.validation.Valid;
 

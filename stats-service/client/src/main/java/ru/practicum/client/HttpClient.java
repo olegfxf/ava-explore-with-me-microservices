@@ -25,6 +25,8 @@ public class HttpClient {
                 .POST(HttpRequest.BodyPublishers.ofString(hit))
                 .build();
 
+        System.out.println("ZZZ " + requestEvent.uri());
+
         HttpResponse<String> responseEvent = java.net.http.HttpClient.newBuilder()
                 .build()
                 .send(requestEvent, HttpResponse.BodyHandlers.ofString());

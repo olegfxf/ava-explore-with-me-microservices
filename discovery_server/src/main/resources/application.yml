@@ -1,0 +1,18 @@
+server:
+  port: 8761
+
+#security.enable-csrf: false
+management:
+  security:
+    enabled: false
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+#  instance:                 # без Докера - разремачить
+#    hostname: localhost     # без Докера - разремачить
+

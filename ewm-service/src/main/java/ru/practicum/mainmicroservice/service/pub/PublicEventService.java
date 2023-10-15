@@ -1,7 +1,6 @@
-package ru.practicum.mainmicroservice.service.pub;
+package ru.practicum.mainmicroservice.service.impl;
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -34,7 +33,6 @@ import static ru.practicum.mainmicroservice.model.State.PUBLISHED;
 @Slf4j
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@RequiredArgsConstructor
 public class PublicEventService {
 
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -42,6 +40,16 @@ public class PublicEventService {
     final RequestRepository requestRepository;
     final StatsServer statsServer;
     final ConfigClient configClient;
+
+    public PublicEventService(EventRepository eventRepository,
+                              StatsServer statsServer,
+                              ConfigClient configClient,
+                              RequestRepository requestRepository) {
+        this.eventRepository = eventRepository;
+        this.statsServer = statsServer;
+        this.configClient = configClient;
+        this.requestRepository = requestRepository;
+    }
 
     public List<EventShortDto> getAllEvants(String text, List<Long> categories, Boolean paid, String rangeStart,
                                             String rangeEnd, Boolean onlyAvailable, String sort, Integer from,

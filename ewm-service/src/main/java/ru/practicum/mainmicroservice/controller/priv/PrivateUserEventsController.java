@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mainmicroservice.dto.*;
 import ru.practicum.mainmicroservice.messages.LogMessages;
-import ru.practicum.mainmicroservice.service.priv.PrivateUserEventsService;
+import ru.practicum.mainmicroservice.service.impl.PrivateUserEventsService;
 
 import javax.validation.Valid;
 import java.util.List;

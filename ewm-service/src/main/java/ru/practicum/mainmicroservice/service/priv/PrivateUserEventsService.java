@@ -1,7 +1,6 @@
-package ru.practicum.mainmicroservice.service.priv;
+package ru.practicum.mainmicroservice.service.impl;
 
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +26,6 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@RequiredArgsConstructor
 public class PrivateUserEventsService {
     static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     final UserRepository userRepository;
@@ -36,6 +34,18 @@ public class PrivateUserEventsService {
     final LocationRepository locationRepository;
     final RequestRepository requestRepository;
 
+    public PrivateUserEventsService(
+            EventRepository eventRepository,
+            UserRepository userRepository,
+            CategoryRepository categoryRepository,
+            LocationRepository locationRepository,
+            RequestRepository requestRepository) {
+        this.categoryRepository = categoryRepository;
+        this.eventRepository = eventRepository;
+        this.userRepository = userRepository;
+        this.locationRepository = locationRepository;
+        this.requestRepository = requestRepository;
+    }
 
     @Transactional
     public EventFullDto saveEvent(Long userId, NewEventDto newEventDto) {
